@@ -33,7 +33,7 @@ pub fn new_wallet(coin: Coin) -> Result<Wallet> {
     use self::Coin::*;
 
     match coin {
-        Bitcoin | BitcoinCash => bitcoin::new_wallet(coin, &[0x00]),
+        Bitcoin | BitcoinCash => bitcoin::new_wallet(coin, &[0x00], 0x00),
         BitcoinGold => unimplemented!(),
         Electroneum => unimplemented!(),
         Ethereum => ethereum::new_wallet(),
