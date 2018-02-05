@@ -13,11 +13,15 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+//! Error type for the crate.
+
 use either::Either;
 use openssl::error as openssl;
 use self::Error::*;
 use std::{error, fmt, io};
 
+/// Enum that stores various possible error types when generating wallets.
+#[allow(missing_docs)]
 #[derive(Debug)]
 pub enum Error {
     StaticMsg(&'static str),
@@ -25,7 +29,6 @@ pub enum Error {
     Io(io::Error),
     OpenSsl(Either<openssl::Error, openssl::ErrorStack>),
 }
-
 
 impl error::Error for Error {
     fn description(&self) -> &str {

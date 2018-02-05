@@ -13,10 +13,15 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#[deny(missing_debug_implementations)]
-#[warn(missing_docs)]
+#![deny(missing_debug_implementations)]
+#![warn(missing_docs)]
 
-/// A Rust library to generate various cryptocurrency wallets.
+//! A Rust library to generate various cryptocurrency wallets.
+//!
+//! Enable the `serde` feature to add `#[derive(Serialize, Deserialize)]`
+//! to structures and naming to [`Coin`].
+//!
+//! [`Coin`]: coin/enum.Coin.html
 
 extern crate base58;
 extern crate either;

@@ -13,6 +13,8 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+//! Various functions related to Ethereum wallet generation and validation.
+
 use openssl::bn::BigNumContext;
 use openssl::ec::{EcGroup, EcKey, PointConversionForm};
 use openssl::nid::Nid;
@@ -20,6 +22,7 @@ use super::prelude::*;
 use tiny_keccak::keccak256;
 use utils::HexSlice;
 
+/// Generate a new Ethereum wallet.
 pub fn new_wallet() -> Result<Wallet> {
     let group = EcGroup::from_curve_name(Nid::SECP256K1)?;
     let key = EcKey::generate(&group)?;
@@ -38,7 +41,6 @@ pub fn new_wallet() -> Result<Wallet> {
         address: format!("0x{:x}", &HexSlice::new(&hash_bytes[12..])),
         public_key: format!("{:x}", &HexSlice::new(&pub_key)),
         private_key: format!("{:x}", &HexSlice::new(&priv_key[..])),
-        other: None,
     })
 }
 

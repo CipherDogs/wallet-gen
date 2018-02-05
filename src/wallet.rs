@@ -13,31 +13,43 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+//! A representation of a cryptocurrency wallet in WIF (Wallet Import Format).
+//! Can be converted to JSON if you enable the `serde` feature.
+
 use {bitcoin, ethereum, feathercoin};
-use std::collections::HashMap;
 use super::prelude::*;
 
-/// A representation of a cryptocurrency wallet.
+/// A representation of a cryptocurrency wallet. Stores in that
+/// coin's native WIF, or "wallet import format".
 #[derive(Debug, Clone)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub struct Wallet {
+    /// Which cryptocurrency this wallet is for
     pub coin: Coin,
+
+    /// The wallet address as a human-readable string
     pub address: String,
+
+    /// The wallet's public key in WIF format
     pub public_key: String,
+
+    /// The wallet's private key in WIF format
     pub private_key: String,
-    pub other: Option<HashMap<String, String>>,
 }
 
 impl Wallet {
-    pub fn new(coin: Coin) -> Result<Self> {
+    /// Generates a new random cryuptocurrency wallet for
+    /// the given coin.
+    pub fn generate(coin: Coin) -> Result<Self> {
         use self::Coin::*;
 
         match coin {
-            Bitcoin | BitcoinCash => bitcoin::new_wallet(coin),
+            Bitcoin | BitcoinCash | Litecoin => bitcoin::new_wallet(coin),
             BitcoinGold => unimplemented!(),
             Electroneum => unimplemented!(),
             Ethereum => ethereum::new_wallet(),
             Feathercoin => feathercoin::new_wallet(),
+            __Nonexhaustive => unreachable!(),
         }
     }
 }

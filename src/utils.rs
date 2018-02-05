@@ -13,13 +13,27 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+//! Various utilities used in wallet generation, which may also be useful
+//! for library consumers.
+
 use std::fmt;
 use std::ops::Deref;
 
+/// A wrapper around a `&[u8]` byte slice that implements
+/// various formatting traits, such as [`Display`],
+/// [`LowerHex`], and [`UpperHex`] so it can be conveniently
+/// used to format byte strings.
+///
+/// [`Display`]: https://doc.rust-lang.org/stable/std/fmt/trait.Display.html
+/// [`UpperHex`]: https://doc.rust-lang.org/stable/std/fmt/trait.UpperHex.html
+/// [`LowerHex`]: https://doc.rust-lang.org/stable/std/fmt/trait.LowerHex.html
 #[derive(Debug, Copy, Clone, Hash)]
 pub struct HexSlice<'a>(&'a [u8]);
 
 impl<'a> HexSlice<'a> {
+    /// Creates a new [`HexSlice`].
+    ///
+    /// [`HexSlice`]: ./struct.HexSlice.html
     pub fn new<T>(data: &'a T) -> Self
         where T: ?Sized + AsRef<[u8]> + 'a,
     {

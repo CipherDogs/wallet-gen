@@ -13,11 +13,19 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+//! "Prelude" module, to re-export various commonly used symbols.
+//! Add `use wallet_gen::prelude::*;` in your code.
+
 use std::result;
 
 pub use coin::Coin;
 pub use error::Error;
 pub use wallet::Wallet;
 
+/// Alias for `std::result::Result<T, E>`.
 pub type StdResult<T, E> = result::Result<T, E>;
+
+/// Type alias of `Result` that uses the crate's [`Error`] type.
+///
+/// [`Error`]: ../enum.Error.html
 pub type Result<T> = StdResult<T, Error>;

@@ -13,8 +13,16 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+//! Various functions related to Feathercoin wallet generation and validation.
+
 use super::prelude::*;
 
+/// Generate a new Feathercoin wallet.
 pub fn new_wallet() -> Result<Wallet> {
     unimplemented!()
+}
+
+#[test]
+fn test_ftc_wallet() {
+    println!("{:?}", &new_wallet().unwrap());
 }
