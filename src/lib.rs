@@ -13,6 +13,11 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+#[deny(missing_debug_implementations)]
+#[warn(missing_docs)]
+
+/// A Rust library to generate various cryptocurrency wallets.
+
 extern crate base58;
 extern crate either;
 extern crate openssl;
@@ -26,17 +31,3 @@ pub mod feathercoin;
 pub mod prelude;
 pub mod utils;
 pub mod wallet;
-
-pub use self::prelude::*;
-
-pub fn new_wallet(coin: Coin) -> Result<Wallet> {
-    use self::Coin::*;
-
-    match coin {
-        Bitcoin | BitcoinCash => bitcoin::new_wallet(coin, &[0x00], 0x00),
-        BitcoinGold => unimplemented!(),
-        Electroneum => unimplemented!(),
-        Ethereum => ethereum::new_wallet(),
-        Feathercoin => feathercoin::new_wallet(),
-    }
-}

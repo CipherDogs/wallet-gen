@@ -23,35 +23,36 @@ use std::io::Write;
 use super::prelude::*;
 use utils::HexSlice;
 
-pub fn new_wallet(coin: Coin, prefix: &[u8], version: u8) -> Result<Wallet> {
+pub fn new_wallet(coin: Coin) -> Result<Wallet> {
     let group = EcGroup::from_curve_name(Nid::SECP256K1)?;
     let mut bn_ctx = BigNumContext::new()?;
     let key = EcKey::generate(&group)?;
     let pub_key = key.public_key()
                      .to_bytes(&group, PointConversionForm::UNCOMPRESSED, &mut bn_ctx)?;
-    let priv_key = key.private_key().to_vec();
+    let mut priv_key = key.private_key().to_vec();
 
-    let digest = hash(MessageDigest::ripemd160(), &pub_key[..])?;
-    let mut address: Vec<u8> = prefix.into();
-    address.write(&digest).unwrap();
+    let pub_hash = sha256(&pub_key);
+    let ripe_hash = hash(MessageDigest::ripemd160(), &pub_hash[..])?;
+    let mut address = ripe_hash.to_vec();
 
     Ok(Wallet {
         coin: coin,
-        address: base58_check(&mut address, version),
+        address: base58_check(&mut address, 0x00),
         public_key: format!("{:x}", &HexSlice::new(&pub_key)),
-        private_key: format!("{:x}", &HexSlice::new(&priv_key[..])),
+        private_key: base58_check(&mut priv_key, 0x80),
         other: None,
     })
 }
 
 pub fn base58_check(bytes: &mut Vec<u8>, version: u8) -> String {
     bytes.insert(0, version);
-    let head = &sha256(&sha256(&bytes))[..4];
+    let hash = sha256(&bytes);
+    let head = &sha256(&hash[..])[..4];
     bytes.write(head).unwrap();
     bytes.as_slice().to_base58()
 }
 
 #[test]
 fn gen_btc_wallet() {
-    println!("{:?}", &new_wallet(Coin::Bitcoin, &[0x00], 0x00).unwrap());
+    println!("{:?}", &new_wallet(Coin::Bitcoin).unwrap());
 }
