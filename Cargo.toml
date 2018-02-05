@@ -1,0 +1,11 @@
+[package]
+name = "wallet-gen"
+version = "0.1.0"
+authors = ["Ammon Smith <ammon.i.smith@gmail.com>"]
+
+[dependencies]
+base58 = "*"
+either = "1"
+openssl = "0.10"
+serde = { version = "1", optional = true, features = ["derive"] }
+tiny-keccak = "1"

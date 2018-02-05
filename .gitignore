@@ -1,0 +1,15 @@
+# Binaries
+target/
+Cargo.lock
+
+# Private Data
+*.pem
+*.rsa
+*.p12
+
+# Misc
+.*.swp
+*~
+*#
+*.bak
+**/*.rs.bk
