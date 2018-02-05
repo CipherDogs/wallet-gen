@@ -53,5 +53,5 @@ pub fn base58_check(bytes: &mut Vec<u8>, version: u8) -> String {
 
 #[test]
 fn gen_btc_wallet() {
-    println!("wallet: {:?}", &new_wallet(Coin::Bitcoin, &[0x00], 0x00).unwrap());
+    println!("{:?}", &new_wallet(Coin::Bitcoin, &[0x00], 0x00).unwrap());
 }

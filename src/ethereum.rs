@@ -44,5 +44,5 @@ pub fn new_wallet() -> Result<Wallet> {
 
 #[test]
 fn gen_eth_wallet() {
-    println!("wallet: {:?}", &new_wallet().unwrap());
+    println!("{:?}", &new_wallet().unwrap());
 }
