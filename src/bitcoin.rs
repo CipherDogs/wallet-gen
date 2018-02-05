@@ -23,21 +23,17 @@ use std::io::Write;
 use super::prelude::*;
 use utils::HexSlice;
 
-pub fn new_wallet(coin: Coin, network_id: u8) -> Result<Wallet> {
+pub fn new_wallet(coin: Coin, prefix: &[u8]) -> Result<Wallet> {
     let group = EcGroup::from_curve_name(Nid::SECP256K1)?;
+    let mut bn_ctx = BigNumContext::new()?;
     let key = EcKey::generate(&group)?;
-    let pub_key = {
-        let mut bn_ctx = BigNumContext::new()?;
-        let mut vec = key.public_key()
-                         .to_bytes(&group, PointConversionForm::UNCOMPRESSED, &mut bn_ctx)?;
-        vec.insert(0, 0x04);
-        vec
-    };
+    let pub_key = key.public_key()
+                     .to_bytes(&group, PointConversionForm::UNCOMPRESSED, &mut bn_ctx)?;
     let priv_key = key.private_key().to_vec();
 
     let digest = hash(MessageDigest::ripemd160(), &pub_key[..])?;
-    let mut address = vec![network_id];
-    address.write(&digest[..]).unwrap();
+    let mut address: Vec<u8> = prefix.into();
+    address.write(&digest).unwrap();
     let checksum = sha256(&sha256(&address));
     address.write(&checksum[..4]).unwrap();
 
