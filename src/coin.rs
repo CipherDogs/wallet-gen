@@ -18,7 +18,8 @@
 use self::Coin::*;
 
 /// The actual enum that represents a cryptocurrency.
-/// This enum is not intended to be matched exhaustively.
+/// This enum is not intended to be matched exhaustively,
+/// as new coins may be added in the future.
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub enum Coin {
@@ -58,6 +59,13 @@ impl Coin {
     /// Converts a coin ID (e.g. `"BTC"`) into its appropriate enum value.
     /// Supports both fully lower-case and fully upper-case variants, but no
     /// mixed-case IDs.
+    ///
+    /// ```
+    /// assert_eq!(Coin::from("LTC"), Some(Coin::Litecoin));
+    /// assert_eq!(Coin::from("ltc"), Some(Coin::Litecoin));
+    /// assert_eq!(Coin::from("Ltc"), None);
+    /// assert_eq!(Coin::from("???"), None);
+    /// ```
     pub fn from_id(id: &str) -> Option<Self> {
         match id {
             "btc" | "BTC" => Some(Bitcoin),
@@ -76,6 +84,7 @@ impl Coin {
     ///
     /// ```
     /// let coin = Coin::Ethereum;
+    /// assert_eq!(coin.id(), "ETH");
     /// assert_eq!(Some(coin), Coin::from(coin.id()));
     /// ```
     pub fn id(self) -> &'static str {

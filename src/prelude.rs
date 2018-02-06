@@ -22,10 +22,12 @@ pub use coin::Coin;
 pub use error::Error;
 pub use wallet::Wallet;
 
-/// Alias for `std::result::Result<T, E>`.
+/// Alias for [`std::result::Result`].
+///
+/// [`std::result::Result`]: https://doc.rust-lang.org/stable/std/result/enum.Result.html
 pub type StdResult<T, E> = result::Result<T, E>;
 
 /// Type alias of `Result` that uses the crate's [`Error`] type.
 ///
-/// [`Error`]: ../enum.Error.html
+/// [`Error`]: ../error/enum.Error.html
 pub type Result<T> = StdResult<T, Error>;

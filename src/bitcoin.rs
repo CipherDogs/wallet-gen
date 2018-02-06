@@ -29,7 +29,7 @@ use utils::HexSlice;
 /// The `coin` parameter is not checked, but is merely passed
 /// through to the resultant [`Wallet`].
 ///
-/// [`Wallet`] ../wallet/struct.Wallet.html
+/// [`Wallet`]: ../wallet/struct.Wallet.html
 pub fn new_wallet(coin: Coin) -> Result<Wallet> {
     let group = EcGroup::from_curve_name(Nid::SECP256K1)?;
     let mut bn_ctx = BigNumContext::new()?;
@@ -52,6 +52,9 @@ pub fn new_wallet(coin: Coin) -> Result<Wallet> {
 
 /// Performs a "base58 check", a modified base 58 byte conversion
 /// that appends a double SHA256 checksum.
+///
+/// This function modifies the buffer, prepending the
+/// "application/version" byte.
 pub fn base58_check(bytes: &mut Vec<u8>, version: u8) -> String {
     bytes.insert(0, version);
     let hash = sha256(bytes);

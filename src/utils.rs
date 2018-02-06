@@ -49,6 +49,12 @@ impl<'a> Deref for HexSlice<'a> {
     }
 }
 
+impl<'a> AsRef<[u8]> for HexSlice<'a> {
+    fn as_ref(&self) -> &[u8] {
+        self.0
+    }
+}
+
 impl<'a> fmt::Display for HexSlice<'a> {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self)
