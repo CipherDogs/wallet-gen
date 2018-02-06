@@ -38,6 +38,11 @@ impl<'a> HexSlice<'a> {
     where T: ?Sized + AsRef<[u8]> + 'a {
         HexSlice(data.as_ref())
     }
+
+    /// Format the byte slice into a [`String`].
+    ///
+    /// [`String`]: https://doc.rust-lang.org/stable/std/string/struct.String.html
+    pub fn format(&self) -> String { format!("{:x}", self) }
 }
 
 impl<'a> Deref for HexSlice<'a> {

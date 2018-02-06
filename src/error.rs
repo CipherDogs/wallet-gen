@@ -16,6 +16,7 @@
 //! Error type for the crate.
 
 use self::Error::*;
+use coin::Coin;
 use either::Either;
 use openssl::error as openssl;
 use std::{error, fmt, io};
@@ -26,6 +27,7 @@ use std::{error, fmt, io};
 pub enum Error {
     StaticMsg(&'static str),
     Msg(String),
+    CoinNotSupported(Coin),
     Io(io::Error),
     OpenSsl(Either<openssl::Error, openssl::ErrorStack>),
 }
@@ -35,6 +37,7 @@ impl error::Error for Error {
         match *self {
             StaticMsg(s) => s,
             Msg(ref s) => s,
+            CoinNotSupported(_) => "This coin is not supported",
             Io(ref e) => e.description(),
             OpenSsl(Either::Left(ref e)) => e.description(),
             OpenSsl(Either::Right(ref e)) => e.description(),
@@ -44,6 +47,7 @@ impl error::Error for Error {
     fn cause(&self) -> Option<&error::Error> {
         match *self {
             StaticMsg(_) | Msg(_) => None,
+            CoinNotSupported(_) => None,
             Io(ref e) => Some(e),
             OpenSsl(Either::Left(ref e)) => Some(e),
             OpenSsl(Either::Right(ref e)) => Some(e),

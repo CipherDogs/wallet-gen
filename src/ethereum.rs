@@ -22,8 +22,8 @@ use openssl::nid::Nid;
 use tiny_keccak::keccak256;
 use utils::HexSlice;
 
-/// Generate a new Ethereum wallet.
-pub fn new_wallet() -> Result<Wallet> {
+/// Generate a new Ethereum or Ethereum derivative or smart contract wallet.
+pub fn new_wallet(coin: Coin) -> Result<Wallet> {
     let group = EcGroup::from_curve_name(Nid::SECP256K1)?;
     let key = EcKey::generate(&group)?;
     let pub_key = {
@@ -37,8 +37,10 @@ pub fn new_wallet() -> Result<Wallet> {
     let priv_key = key.private_key().to_vec();
     let hash_bytes = keccak256(&pub_key);
 
+    let todo_coin_processing = coin;
+
     Ok(Wallet {
-        coin:        Coin::Ethereum,
+        coin:        coin,
         address:     format!("0x{:x}", &HexSlice::new(&hash_bytes[12..])),
         public_key:  format!("{:x}", &HexSlice::new(&pub_key)),
         private_key: format!("{:x}", &HexSlice::new(&priv_key[..])),
@@ -47,5 +49,10 @@ pub fn new_wallet() -> Result<Wallet> {
 
 #[test]
 fn gen_eth_wallet() {
-    println!("{:?}", &new_wallet().unwrap());
+    println!("{:?}", &new_wallet(Coin::Ethereum).unwrap());
+}
+
+#[test]
+fn gen_etc_wallet() {
+    println!("{:?}", &new_wallet(Coin::EthereumClassic).unwrap());
 }

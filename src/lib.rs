@@ -13,7 +13,7 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#![deny(missing_debug_implementations)]
+#![deny(missing_debug_implementations, missing_docs)]
 #![warn(missing_docs)]
 
 //! A Rust library to generate various cryptocurrency wallets.
@@ -32,7 +32,6 @@ pub mod bitcoin;
 pub mod coin;
 pub mod ethereum;
 pub mod error;
-pub mod feathercoin;
 pub mod prelude;
 pub mod utils;
 pub mod wallet;
