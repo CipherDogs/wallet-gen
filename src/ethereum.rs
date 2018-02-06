@@ -15,10 +15,10 @@
 
 //! Various functions related to Ethereum wallet generation and validation.
 
+use super::prelude::*;
 use openssl::bn::BigNumContext;
 use openssl::ec::{EcGroup, EcKey, PointConversionForm};
 use openssl::nid::Nid;
-use super::prelude::*;
 use tiny_keccak::keccak256;
 use utils::HexSlice;
 
@@ -28,8 +28,9 @@ pub fn new_wallet() -> Result<Wallet> {
     let key = EcKey::generate(&group)?;
     let pub_key = {
         let mut bn_ctx = BigNumContext::new()?;
-        let mut vec = key.public_key()
-                         .to_bytes(&group, PointConversionForm::UNCOMPRESSED, &mut bn_ctx)?;
+        let mut vec =
+            key.public_key()
+                .to_bytes(&group, PointConversionForm::UNCOMPRESSED, &mut bn_ctx)?;
         vec.remove(0);
         vec
     };
@@ -37,9 +38,9 @@ pub fn new_wallet() -> Result<Wallet> {
     let hash_bytes = keccak256(&pub_key);
 
     Ok(Wallet {
-        coin: Coin::Ethereum,
-        address: format!("0x{:x}", &HexSlice::new(&hash_bytes[12..])),
-        public_key: format!("{:x}", &HexSlice::new(&pub_key)),
+        coin:        Coin::Ethereum,
+        address:     format!("0x{:x}", &HexSlice::new(&hash_bytes[12..])),
+        public_key:  format!("{:x}", &HexSlice::new(&pub_key)),
         private_key: format!("{:x}", &HexSlice::new(&priv_key[..])),
     })
 }

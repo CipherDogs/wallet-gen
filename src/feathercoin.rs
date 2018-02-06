@@ -18,9 +18,7 @@
 use super::prelude::*;
 
 /// Generate a new Feathercoin wallet.
-pub fn new_wallet() -> Result<Wallet> {
-    unimplemented!()
-}
+pub fn new_wallet() -> Result<Wallet> { unimplemented!() }
 
 #[test]
 fn test_ftc_wallet() {

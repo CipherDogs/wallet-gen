@@ -15,6 +15,7 @@
 
 //! Various functions related to Bitcoin wallet generation and validation.
 
+use super::prelude::*;
 use base58::ToBase58;
 use openssl::bn::BigNumContext;
 use openssl::ec::{EcGroup, EcKey, PointConversionForm};
@@ -22,7 +23,6 @@ use openssl::hash::{hash, MessageDigest};
 use openssl::nid::Nid;
 use openssl::sha::sha256;
 use std::io::Write;
-use super::prelude::*;
 use utils::HexSlice;
 
 /// Generate a new Bitcoin (or variant) wallet.
@@ -34,8 +34,9 @@ pub fn new_wallet(coin: Coin) -> Result<Wallet> {
     let group = EcGroup::from_curve_name(Nid::SECP256K1)?;
     let mut bn_ctx = BigNumContext::new()?;
     let key = EcKey::generate(&group)?;
-    let pub_key = key.public_key()
-                     .to_bytes(&group, PointConversionForm::UNCOMPRESSED, &mut bn_ctx)?;
+    let pub_key =
+        key.public_key()
+            .to_bytes(&group, PointConversionForm::UNCOMPRESSED, &mut bn_ctx)?;
     let mut priv_key = key.private_key().to_vec();
 
     let pub_hash = sha256(&pub_key);
@@ -43,9 +44,9 @@ pub fn new_wallet(coin: Coin) -> Result<Wallet> {
     let mut address = ripe_hash.to_vec();
 
     Ok(Wallet {
-        coin: coin,
-        address: base58_check(&mut address, 0x00),
-        public_key: format!("{:x}", &HexSlice::new(&pub_key)),
+        coin:        coin,
+        address:     base58_check(&mut address, 0x00),
+        public_key:  format!("{:x}", &HexSlice::new(&pub_key)),
         private_key: base58_check(&mut priv_key, 0x80),
     })
 }

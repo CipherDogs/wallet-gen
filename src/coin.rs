@@ -51,8 +51,7 @@ pub enum Coin {
     #[cfg_attr(feature = "serde", serde(rename = "LTC"))]
     Litecoin,
 
-    #[doc(hidden)]
-    __Nonexhaustive,
+    #[doc(hidden)] __Nonexhaustive,
 }
 
 impl Coin {

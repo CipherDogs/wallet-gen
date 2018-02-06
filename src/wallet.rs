@@ -16,8 +16,8 @@
 //! A representation of a cryptocurrency wallet. Stores in that
 //! coin's native WIF, or "wallet import format".
 
-use {bitcoin, ethereum, feathercoin};
 use super::prelude::*;
+use {bitcoin, ethereum, feathercoin};
 
 /// The actual wallet structure.
 #[derive(Debug, Clone)]
@@ -57,8 +57,13 @@ impl Wallet {
     /// Formats this object as a JSON-formatted string.
     /// Does not require `serde` to be enabled.
     pub fn to_json_str(&self) -> String {
-        format!("{{\"coin\":\"{}\",\"address\":{:?},\"public_key\":{:?},\"private_key\":{:?}}}",
-                self.coin.id(), &self.address, &self.public_key, &self.private_key)
+        format!(
+            "{{\"coin\":\"{}\",\"address\":{:?},\"public_key\":{:?},\"private_key\":{:?}}}",
+            self.coin.id(),
+            &self.address,
+            &self.public_key,
+            &self.private_key
+        )
     }
 }
 

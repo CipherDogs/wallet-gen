@@ -35,8 +35,7 @@ impl<'a> HexSlice<'a> {
     ///
     /// [`HexSlice`]: ./struct.HexSlice.html
     pub fn new<T>(data: &'a T) -> Self
-        where T: ?Sized + AsRef<[u8]> + 'a,
-    {
+    where T: ?Sized + AsRef<[u8]> + 'a {
         HexSlice(data.as_ref())
     }
 }
@@ -44,21 +43,15 @@ impl<'a> HexSlice<'a> {
 impl<'a> Deref for HexSlice<'a> {
     type Target = [u8];
 
-    fn deref(&self) -> &Self::Target {
-        self.0
-    }
+    fn deref(&self) -> &Self::Target { self.0 }
 }
 
 impl<'a> AsRef<[u8]> for HexSlice<'a> {
-    fn as_ref(&self) -> &[u8] {
-        self.0
-    }
+    fn as_ref(&self) -> &[u8] { self.0 }
 }
 
 impl<'a> fmt::Display for HexSlice<'a> {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self)
-    }
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result { write!(f, "{}", self) }
 }
 
 impl<'a> fmt::LowerHex for HexSlice<'a> {
