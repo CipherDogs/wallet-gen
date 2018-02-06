@@ -51,7 +51,7 @@ impl<'a> AsRef<[u8]> for HexSlice<'a> {
 }
 
 impl<'a> fmt::Display for HexSlice<'a> {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result { write!(f, "{}", self) }
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result { write!(f, "{:x}", self) }
 }
 
 impl<'a> fmt::LowerHex for HexSlice<'a> {
