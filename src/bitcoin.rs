@@ -69,21 +69,17 @@ pub fn base58_check(bytes: &mut Vec<u8>, prefix: &[u8]) -> String {
 }
 
 #[test]
-fn gen_btc_wallet() {
-    println!("{:?}", &new_wallet(Coin::Bitcoin).unwrap());
-}
+fn gen_wallets() {
+    use coin::COINS;
 
-#[test]
-fn gen_ltc_wallet() {
-    println!("{:?}", &new_wallet(Coin::Litecoin).unwrap());
-}
-
-#[test]
-fn gen_ftc_wallet() {
-    println!("{:?}", &new_wallet(Coin::Feathercoin).unwrap());
-}
-
-#[test]
-fn gen_zec_wallet() {
-    println!("{:?}", &new_wallet(Coin::Zcash).unwrap());
+    for coin in COINS.iter() {
+        if coin.bitcoin_wif_data().is_some() {
+            let wallet = new_wallet(*coin).unwrap();
+            println!("Coin: {:?} ({})", coin, coin.symbol());
+            println!("Address: {}", &wallet.address);
+            println!("Public key: {}", &wallet.public_key);
+            println!("Private key: {}", &wallet.private_key);
+            println!();
+        }
+    }
 }
