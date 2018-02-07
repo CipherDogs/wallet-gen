@@ -45,16 +45,8 @@ impl Wallet {
         use self::Coin::*;
 
         match coin {
-            Bitcoin | Testnet | Litecoin | Dogecoin | Reddcoin | Dash | Peercoin | Namecoin
-            | Feathercoin | Counterparty | Blackcoin | NuShares | NuBits | Mazacoin | Viacoin
-            | ClearingHouse | Rubycoin | Groestlcoin | Digitalcoin | Cannacoin | DigiByte
-            | Monacoin | Clams | Primecoin | Neoscoin | Jumbucks | ZiftCoin | NXT
-            | MonetaryUnit | Zoom | Vpncoin | CanadaEcoin | ShadowCash | ParkByte | Pandacoin
-            | StartCoin | GcrCoin | Novacoin | Asiacoin | Bitcoindark | Dopecoin | Templecoin
-            | OkCash | ElectronicGulden | Potcoin | Ripple | Monero | Zcash => {
-                bitcoin::new_wallet(coin)
-            },
             Ethereum | EthereumClassic => ethereum::new_wallet(coin),
+            coin if coin.bitcoin_wif_data().is_some() => bitcoin::new_wallet(coin),
             _ => Err(Error::CoinNotSupported(coin)),
         }
     }

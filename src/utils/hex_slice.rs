@@ -1,5 +1,5 @@
 /*
- * utils.rs
+ * utils/hex_slice.rs
  *
  * Copyright 2018 Standard Mining
  *
@@ -13,8 +13,7 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-//! Various utilities used in wallet generation, which may also be useful
-//! for library consumers.
+//! Helper struct to easily create hex bytestrings from byte slices.
 
 use std::fmt;
 use std::ops::Deref;
