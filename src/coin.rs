@@ -519,6 +519,10 @@ pub enum Coin {
     #[cfg_attr(feature = "serde", serde(rename = "XMR"))]
     Monero,
 
+    /// [Aeon](http://www.aeon.cash/), symbol "AEON"
+    #[cfg_attr(feature = "serde", serde(rename = "AEON"))]
+    Aeon,
+
     /// [Voxels](https://www.voxelus.com), symbol "VOX"
     #[cfg_attr(feature = "serde", serde(rename = "VOX"))]
     Voxels,
@@ -1011,6 +1015,7 @@ impl Coin {
             "brk" | "BRK" => Some(BreakoutCoin),
             "vc" | "VC" => Some(Vcash),
             "xmr" | "XMR" => Some(Monero),
+            "aeon" | "AEMON" => Some(Aeon),
             "vox" | "VOX" => Some(Voxels),
             "nav" | "NAV" => Some(NavCoin),
             "fct" | "FCT" => Some(FactomFactoids),
@@ -1240,6 +1245,7 @@ impl Coin {
             Coin::BreakoutCoin => "BRK",
             Coin::Vcash => "VC",
             Coin::Monero => "XMR",
+            Coin::Aeon => "AEON",
             Coin::Voxels => "VOX",
             Coin::NavCoin => "NAV",
             Coin::FactomFactoids => "FCT",
@@ -1533,6 +1539,7 @@ pub const COINS: [Coin; 211] = [
     Coin::BreakoutCoin,
     Coin::Vcash,
     Coin::Monero,
+    Coin::Aeon,
     Coin::Voxels,
     Coin::NavCoin,
     Coin::FactomFactoids,
