@@ -23,7 +23,7 @@ use self::Coin::*;
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub enum Coin {
-    /// Bitcoin, symbol "BTC", URL: https://bitcoin.org/
+    /// [Bitcoin](https://bitcoin.org/), symbol "BTC"
     #[cfg_attr(feature = "serde", serde(rename = "BTC"))]
     Bitcoin,
 
@@ -31,11 +31,11 @@ pub enum Coin {
     #[cfg_attr(feature = "serde", serde(rename = "TEST"))]
     Testnet,
 
-    /// Litecoin, symbol "LTC", URL: https://litecoin.org/
+    /// [Litecoin](https://litecoin.org/), symbol "LTC"
     #[cfg_attr(feature = "serde", serde(rename = "LTC"))]
     Litecoin,
 
-    /// Dogecoin, symbol "DOGE", URL: https://github.com/dogecoin/dogecoin
+    /// [Dogecoin](https://github.com/dogecoin/dogecoin), symbol "DOGE"
     #[cfg_attr(feature = "serde", serde(rename = "DOGE"))]
     Dogecoin,
 
@@ -43,31 +43,31 @@ pub enum Coin {
     #[cfg_attr(feature = "serde", serde(rename = "RDD"))]
     Reddcoin,
 
-    /// Dash, symbol "DSH", URL: https://github.com/dashpay/dash
+    /// [Dash](https://github.com/dashpay/dash), symbol "DSH"
     #[cfg_attr(feature = "serde", serde(rename = "DSH"))]
     Dash,
 
-    /// Peercoin, symbol "PPC", URL: https://peercoin.net/
+    /// [Peercoin](https://peercoin.net/), symbol "PPC"
     #[cfg_attr(feature = "serde", serde(rename = "PPC"))]
     Peercoin,
 
-    /// Namecoin, symbol "NMC", URL: http://namecoin.info/
+    /// [Namecoin](http://namecoin.info/), symbol "NMC"
     #[cfg_attr(feature = "serde", serde(rename = "NMC"))]
     Namecoin,
 
-    /// Feathercoin, symbol "FTC", URL: https://www.feathercoin.com/
+    /// [Feathercoin](https://www.feathercoin.com/), symbol "FTC"
     #[cfg_attr(feature = "serde", serde(rename = "FTC"))]
     Feathercoin,
 
-    /// Counterparty, symbol "XCP", URL: http://counterparty.io/
+    /// [Counterparty](http://counterparty.io/), symbol "XCP"
     #[cfg_attr(feature = "serde", serde(rename = "XCP"))]
     Counterparty,
 
-    /// Blackcoin, symbol "BLK", URL: http://blackcoin.co/
+    /// [Blackcoin](http://blackcoin.co/), symbol "BLK"
     #[cfg_attr(feature = "serde", serde(rename = "BLK"))]
     Blackcoin,
 
-    /// NuShares, symbol "NSR", URL: https://nubits.com/nushares/introduction
+    /// [NuShares](https://nubits.com/nushares/introduction), symbol "NSR"
     #[cfg_attr(feature = "serde", serde(rename = "NSR"))]
     NuShares,
 
@@ -155,7 +155,7 @@ pub enum Coin {
     #[cfg_attr(feature = "serde", serde(rename = "VPN"))]
     Vpncoin,
 
-    /// Canada eCoin, symbol "CDN", URL: https://github.com/Canada-eCoin/
+    /// [Canada eCoin](https://github.com/Canada-eCoin/), symbol "CDN"
     #[cfg_attr(feature = "serde", serde(rename = "CDN"))]
     CanadaeCoin,
 
@@ -163,7 +163,7 @@ pub enum Coin {
     #[cfg_attr(feature = "serde", serde(rename = "SDC"))]
     ShadowCash,
 
-    /// ParkByte, symbol "PKB", URL: https://github.com/parkbyte/
+    /// [ParkByte](https://github.com/parkbyte/), symbol "PKB"
     #[cfg_attr(feature = "serde", serde(rename = "PKB"))]
     ParkByte,
 
@@ -175,31 +175,31 @@ pub enum Coin {
     #[cfg_attr(feature = "serde", serde(rename = "START"))]
     StartCoin,
 
-    /// MOIN, symbol "MOIN", URL: https://discovermoin.com
+    /// [MOIN](https://discovermoin.com), symbol "MOIN"
     #[cfg_attr(feature = "serde", serde(rename = "MOIN"))]
     MOIN,
 
-    /// Expanse, symbol "EXP", URL: http://www.expanse.tech/
+    /// [Expanse](http://www.expanse.tech/), symbol "EXP"
     #[cfg_attr(feature = "serde", serde(rename = "EXP"))]
     Expanse,
 
-    /// Decred, symbol "DCR", URL: https://decred.org/
+    /// [Decred](https://decred.org/), symbol "DCR"
     #[cfg_attr(feature = "serde", serde(rename = "DCR"))]
     Decred,
 
-    /// NEM, symbol "XEM", URL: https://github.com/NemProject
+    /// [NEM](https://github.com/NemProject), symbol "XEM"
     #[cfg_attr(feature = "serde", serde(rename = "XEM"))]
     NEM,
 
-    /// Particl, symbol "PART", URL: https://particl.io/
+    /// [Particl](https://particl.io/), symbol "PART"
     #[cfg_attr(feature = "serde", serde(rename = "PART"))]
     Particl,
 
-    /// Argentum, symbol "ARG", URL: http://www.argentum.io
+    /// [Argentum](http://www.argentum.io), symbol "ARG"
     #[cfg_attr(feature = "serde", serde(rename = "ARG"))]
     Argentum,
 
-    /// Shreeji, symbol "SHR", URL: https://github.com/SMJBIT/SHREEJI
+    /// [Shreeji](https://github.com/SMJBIT/SHREEJI), symbol "SHR"
     #[cfg_attr(feature = "serde", serde(rename = "SHR"))]
     Shreeji,
 
@@ -207,127 +207,127 @@ pub enum Coin {
     #[cfg_attr(feature = "serde", serde(rename = "GCR"))]
     GcrCoin,
 
-    /// Novacoin, symbol "NVC", URL: https://github.com/novacoin-project/novacoin
+    /// [Novacoin](https://github.com/novacoin-project/novacoin), symbol "NVC"
     #[cfg_attr(feature = "serde", serde(rename = "NVC"))]
     Novacoin,
 
-    /// Asiacoin, symbol "AC", URL: https://github.com/AsiaCoin/AsiaCoinFix
+    /// [Asiacoin](https://github.com/AsiaCoin/AsiaCoinFix), symbol "AC"
     #[cfg_attr(feature = "serde", serde(rename = "AC"))]
     Asiacoin,
 
-    /// Bitcoindark, symbol "BTCD", URL: https://github.com/jl777/btcd
+    /// [Bitcoindark](https://github.com/jl777/btcd), symbol "BTCD"
     #[cfg_attr(feature = "serde", serde(rename = "BTCD"))]
     Bitcoindark,
 
-    /// Dopecoin, symbol "DOPE", URL: https://github.com/dopecoin-dev/DopeCoinV3
+    /// [Dopecoin](https://github.com/dopecoin-dev/DopeCoinV3), symbol "DOPE"
     #[cfg_attr(feature = "serde", serde(rename = "DOPE"))]
     Dopecoin,
 
-    /// Templecoin, symbol "TPC", URL: https://github.com/9cat/templecoin
+    /// [Templecoin](https://github.com/9cat/templecoin), symbol "TPC"
     #[cfg_attr(feature = "serde", serde(rename = "TPC"))]
     Templecoin,
 
-    /// AIB, symbol "AIB", URL: https://github.com/iobond/aib
+    /// [AIB](https://github.com/iobond/aib), symbol "AIB"
     #[cfg_attr(feature = "serde", serde(rename = "AIB"))]
     AIB,
 
-    /// EDRCoin, symbol "EDRC", URL: https://github.com/EDRCoin/EDRcoin-src
+    /// [EDRCoin](https://github.com/EDRCoin/EDRcoin-src), symbol "EDRC"
     #[cfg_attr(feature = "serde", serde(rename = "EDRC"))]
     EDRCoin,
 
-    /// Syscoin, symbol "SYS", URL: https://github.com/syscoin/syscoin2
+    /// [Syscoin](https://github.com/syscoin/syscoin2), symbol "SYS"
     #[cfg_attr(feature = "serde", serde(rename = "SYS"))]
     Syscoin,
 
-    /// Solarcoin, symbol "SLR", URL: https://github.com/onsightit/solarcoin
+    /// [Solarcoin](https://github.com/onsightit/solarcoin), symbol "SLR"
     #[cfg_attr(feature = "serde", serde(rename = "SLR"))]
     Solarcoin,
 
-    /// Smileycoin, symbol "SMLY", URL: https://github.com/tutor-web/smileyCoin
+    /// [Smileycoin](https://github.com/tutor-web/smileyCoin), symbol "SMLY"
     #[cfg_attr(feature = "serde", serde(rename = "SMLY"))]
     Smileycoin,
 
-    /// Ethereum, symbol "ETH", URL: https://ethereum.org/ether
+    /// [Ethereum](https://ethereum.org/ether), symbol "ETH"
     #[cfg_attr(feature = "serde", serde(rename = "ETH"))]
     Ethereum,
 
-    /// Ethereum Classic, symbol "ETC", URL: https://ethereumclassic.github.io
+    /// [Ethereum Classic](https://ethereumclassic.github.io), symbol "ETC"
     #[cfg_attr(feature = "serde", serde(rename = "ETC"))]
     EthereumClassic,
 
-    /// Pesobit, symbol "PSB", URL: https://github.com/pesobitph/pesobit-source
+    /// [Pesobit](https://github.com/pesobitph/pesobit-source), symbol "PSB"
     #[cfg_attr(feature = "serde", serde(rename = "PSB"))]
     Pesobit,
 
-    /// Landcoin, symbol "LDCN", URL: http://landcoin.co/
+    /// [Landcoin](http://landcoin.co/), symbol "LDCN"
     #[cfg_attr(feature = "serde", serde(rename = "LDCN"))]
     Landcoin,
 
-    /// Bitcoinplus, symbol "XBC", URL: https://bitcoinplus.org
+    /// [Bitcoinplus](https://bitcoinplus.org), symbol "XBC"
     #[cfg_attr(feature = "serde", serde(rename = "XBC"))]
     Bitcoinplus,
 
-    /// Internet of People, symbol "IOP", URL: http://www.fermat.org
+    /// [Internet of People](http://www.fermat.org), symbol "IOP"
     #[cfg_attr(feature = "serde", serde(rename = "IOP"))]
     InternetofPeople,
 
-    /// Nexus, symbol "NXS", URL: http://www.nexusearth.com/
+    /// [Nexus](http://www.nexusearth.com/), symbol "NXS"
     #[cfg_attr(feature = "serde", serde(rename = "NXS"))]
     Nexus,
 
-    /// InsaneCoin, symbol "INSN", URL: http://insanecoin.com
+    /// [InsaneCoin](http://insanecoin.com), symbol "INSN"
     #[cfg_attr(feature = "serde", serde(rename = "INSN"))]
     InsaneCoin,
 
-    /// OkCash, symbol "OK", URL: https://github.com/okcashpro/
+    /// [OkCash](https://github.com/okcashpro/), symbol "OK"
     #[cfg_attr(feature = "serde", serde(rename = "OK"))]
     OkCash,
 
-    /// BritCoin, symbol "BRIT", URL: https://britcoin.com
+    /// [BritCoin](https://britcoin.com), symbol "BRIT"
     #[cfg_attr(feature = "serde", serde(rename = "BRIT"))]
     BritCoin,
 
-    /// Compcoin, symbol "CMP", URL: https://compcoin.com
+    /// [Compcoin](https://compcoin.com), symbol "CMP"
     #[cfg_attr(feature = "serde", serde(rename = "CMP"))]
     Compcoin,
 
-    /// Crown, symbol "CRW", URL: http://crown.tech/
+    /// [Crown](http://crown.tech/), symbol "CRW"
     #[cfg_attr(feature = "serde", serde(rename = "CRW"))]
     Crown,
 
-    /// BelaCoin, symbol "BELA", URL: http://belacoin.org
+    /// [BelaCoin](http://belacoin.org), symbol "BELA"
     #[cfg_attr(feature = "serde", serde(rename = "BELA"))]
     BelaCoin,
 
-    /// Virtual Cash, symbol "VASH", URL: http://www.bitnet.cc/
+    /// [Virtual Cash](http://www.bitnet.cc/), symbol "VASH"
     #[cfg_attr(feature = "serde", serde(rename = "VASH"))]
     VirtualCash,
 
-    /// FujiCoin, symbol "FJC", URL: http://www.fujicoin.org/
+    /// [FujiCoin](http://www.fujicoin.org/), symbol "FJC"
     #[cfg_attr(feature = "serde", serde(rename = "FJC"))]
     FujiCoin,
 
-    /// MIX, symbol "MIX", URL: https://www.mix-blockchain.org/
+    /// [MIX](https://www.mix-blockchain.org/), symbol "MIX"
     #[cfg_attr(feature = "serde", serde(rename = "MIX"))]
     MIX,
 
-    /// Verge, symbol "XVG", URL: https://github.com/vergecurrency/verge/
+    /// [Verge](https://github.com/vergecurrency/verge/), symbol "XVG"
     #[cfg_attr(feature = "serde", serde(rename = "XVG"))]
     Verge,
 
-    /// Electronic Gulden, symbol "EFL", URL: https://egulden.org/
+    /// [Electronic Gulden](https://egulden.org/), symbol "EFL"
     #[cfg_attr(feature = "serde", serde(rename = "EFL"))]
     ElectronicGulden,
 
-    /// ClubCoin, symbol "CLUB", URL: https://clubcoin.co/
+    /// [ClubCoin](https://clubcoin.co/), symbol "CLUB"
     #[cfg_attr(feature = "serde", serde(rename = "CLUB"))]
     ClubCoin,
 
-    /// RichCoin, symbol "RICHX", URL: https://richcoin.us/
+    /// [RichCoin](https://richcoin.us/), symbol "RICHX"
     #[cfg_attr(feature = "serde", serde(rename = "RICHX"))]
     RichCoin,
 
-    /// Potcoin, symbol "POT", URL: http://potcoin.com/
+    /// [Potcoin](http://potcoin.com/), symbol "POT"
     #[cfg_attr(feature = "serde", serde(rename = "POT"))]
     Potcoin,
 
@@ -343,7 +343,7 @@ pub enum Coin {
     #[cfg_attr(feature = "serde", serde(rename = "GRC"))]
     Gridcoin,
 
-    /// Auroracoin, symbol "AUR", URL: http://auroracoin.is/
+    /// [Auroracoin](http://auroracoin.is/), symbol "AUR"
     #[cfg_attr(feature = "serde", serde(rename = "AUR"))]
     Auroracoin,
 
@@ -351,519 +351,519 @@ pub enum Coin {
     #[cfg_attr(feature = "serde", serde(rename = "IXC"))]
     IXCoin,
 
-    /// Gulden, symbol "NLG", URL: https://Gulden.com/
+    /// [Gulden](https://Gulden.com/), symbol "NLG"
     #[cfg_attr(feature = "serde", serde(rename = "NLG"))]
     Gulden,
 
-    /// BitBean, symbol "BITB", URL: http://bitbean.org/
+    /// [BitBean](http://bitbean.org/), symbol "BITB"
     #[cfg_attr(feature = "serde", serde(rename = "BITB"))]
     BitBean,
 
-    /// Bata, symbol "BTA", URL: http://bata.io/
+    /// [Bata](http://bata.io/), symbol "BTA"
     #[cfg_attr(feature = "serde", serde(rename = "BTA"))]
     Bata,
 
-    /// Myriadcoin, symbol "XMY", URL: http://myriadcoin.org
+    /// [Myriadcoin](http://myriadcoin.org), symbol "XMY"
     #[cfg_attr(feature = "serde", serde(rename = "XMY"))]
     Myriadcoin,
 
-    /// BitSend, symbol "BSD", URL: http://bitsend.info
+    /// [BitSend](http://bitsend.info), symbol "BSD"
     #[cfg_attr(feature = "serde", serde(rename = "BSD"))]
     BitSend,
 
-    /// Unobtanium, symbol "UNO", URL: http://http://unobtanium.uno/
+    /// [Unobtanium](http://http://unobtanium.uno/), symbol "UNO"
     #[cfg_attr(feature = "serde", serde(rename = "UNO"))]
     Unobtanium,
 
-    /// MasterTrader, symbol "MTR", URL: https://github.com/CrypticApplications/MTR-Update/
+    /// [MasterTrader](https://github.com/CrypticApplications/MT), symbol "MTR"
     #[cfg_attr(feature = "serde", serde(rename = "MTR"))]
     MasterTrader,
 
-    /// GoldBlocks, symbol "GB", URL: https://github.com/goldblockscoin/goldblocks
+    /// [GoldBlocks](https://github.com/goldblockscoin/goldblocks), symbol "GB"
     #[cfg_attr(feature = "serde", serde(rename = "GB"))]
     GoldBlocks,
 
-    /// Saham, symbol "SHM", URL: https://github.com/SahamDev/SahamDev
+    /// [Saham](https://github.com/SahamDev/SahamDev), symbol "SHM"
     #[cfg_attr(feature = "serde", serde(rename = "SHM"))]
     Saham,
 
-    /// Chronos, symbol "CRX", URL: https://github.com/chronoscoin/Chronoscoin
+    /// [Chronos](https://github.com/chronoscoin/Chronoscoin), symbol "CRX"
     #[cfg_attr(feature = "serde", serde(rename = "CRX"))]
     Chronos,
 
-    /// Ubiquoin, symbol "BIQ", URL: https://github.com/ubiquoin/ubiq
+    /// [Ubiquoin](https://github.com/ubiquoin/ubiq), symbol "BIQ"
     #[cfg_attr(feature = "serde", serde(rename = "BIQ"))]
     Ubiquoin,
 
-    /// Evotion, symbol "EVO", URL: https://github.com/evoshiun/Evotion
+    /// [Evotion](https://github.com/evoshiun/Evotion), symbol "EVO"
     #[cfg_attr(feature = "serde", serde(rename = "EVO"))]
     Evotion,
 
-    /// SaveTheOcean, symbol "STO", URL: https://github.com/SaveTheOceanMovement/SaveTheOceanCoin
+    /// [SaveTheOcean](https://github.com/SaveTheOceanMovement/SaveTheOceanCoin), symbol "STO"
     #[cfg_attr(feature = "serde", serde(rename = "STO"))]
     SaveTheOcean,
 
-    /// BigUp, symbol "BIGUP", URL: https://github.com/BigUps/
+    /// [BigUp](https://github.com/BigUps/), symbol "BIGUP"
     #[cfg_attr(feature = "serde", serde(rename = "BIGUP"))]
     BigUp,
 
-    /// GameCredits, symbol "GMC", URL: https://github.com/gamecredits-project
+    /// [GameCredits](https://github.com/gamecredits-project), symbol "GMC"
     #[cfg_attr(feature = "serde", serde(rename = "GMC"))]
     GameCredits,
 
-    /// Dollarcoins, symbol "DLC", URL: https://github.com/dollarcoins/source
+    /// [Dollarcoins](https://github.com/dollarcoins/source), symbol "DLC"
     #[cfg_attr(feature = "serde", serde(rename = "DLC"))]
     Dollarcoins,
 
-    /// Zayedcoin, symbol "ZYD", URL: https://github.com/ZayedCoin/Zayedcoin
+    /// [Zayedcoin](https://github.com/ZayedCoin/Zayedcoin), symbol "ZYD"
     #[cfg_attr(feature = "serde", serde(rename = "ZYD"))]
     Zayedcoin,
 
-    /// Dubaicoin, symbol "DBIC", URL: https://github.com/DubaiCoinDev/DubaiCoin
+    /// [Dubaicoin](https://github.com/DubaiCoinDev/DubaiCoin), symbol "DBIC"
     #[cfg_attr(feature = "serde", serde(rename = "DBIC"))]
     Dubaicoin,
 
-    /// Stratis, symbol "STRAT", URL: http://www.stratisplatform.com
+    /// [Stratis](http://www.stratisplatform.com), symbol "STRAT"
     #[cfg_attr(feature = "serde", serde(rename = "STRAT"))]
     Stratis,
 
-    /// Shilling, symbol "SH", URL: https://github.com/yavwa/Shilling
+    /// [Shilling](https://github.com/yavwa/Shilling), symbol "SH"
     #[cfg_attr(feature = "serde", serde(rename = "SH"))]
     Shilling,
 
-    /// MarsCoin, symbol "MARS", URL: http://www.marscoin.org/
+    /// [MarsCoin](http://www.marscoin.org/), symbol "MARS"
     #[cfg_attr(feature = "serde", serde(rename = "MARS"))]
     MarsCoin,
 
-    /// Ubiq, symbol "UBQ", URL: https://github.com/Ubiq
+    /// [Ubiq](https://github.com/Ubiq), symbol "UBQ"
     #[cfg_attr(feature = "serde", serde(rename = "UBQ"))]
     Ubiq,
 
-    /// Pesetacoin, symbol "PTC", URL: http://pesetacoin.info/
+    /// [Pesetacoin](http://pesetacoin.info/), symbol "PTC"
     #[cfg_attr(feature = "serde", serde(rename = "PTC"))]
     Pesetacoin,
 
-    /// Neurocoin, symbol "NRC", URL: https://neurocoin.org
+    /// [Neurocoin](https://neurocoin.org), symbol "NRC"
     #[cfg_attr(feature = "serde", serde(rename = "NRC"))]
     Neurocoin,
 
-    /// ARK, symbol "ARK", URL: https://ark.io
+    /// [ARK](https://ark.io), symbol "ARK"
     #[cfg_attr(feature = "serde", serde(rename = "ARK"))]
     ARK,
 
-    /// UltimateSecureCashMain, symbol "USC", URL: http://ultimatesecurecash.info
+    /// [UltimateSecureCashMain](http://ultimatesecurecash.info), symbol "USC"
     #[cfg_attr(feature = "serde", serde(rename = "USC"))]
     UltimateSecureCashMain,
 
-    /// Hempcoin, symbol "HMP", URL: http://hempcoin.org
+    /// [Hempcoin](http://hempcoin.org), symbol "HMP"
     #[cfg_attr(feature = "serde", serde(rename = "HMP"))]
     Hempcoin,
 
-    /// Linx, symbol "LINX", URL: https://mylinx.io
+    /// [Linx](https://mylinx.io), symbol "LINX"
     #[cfg_attr(feature = "serde", serde(rename = "LINX"))]
     Linx,
 
-    /// Ecoin, symbol "ECN", URL: https://www.ecoinsource.com
+    /// [Ecoin](https://www.ecoinsource.com), symbol "ECN"
     #[cfg_attr(feature = "serde", serde(rename = "ECN"))]
     Ecoin,
 
-    /// Denarius, symbol "DNR", URL: https://denarius.io
+    /// [Denarius](https://denarius.io), symbol "DNR"
     #[cfg_attr(feature = "serde", serde(rename = "DNR"))]
     Denarius,
 
-    /// Pinkcoin, symbol "PINK", URL: http://getstarted.with.pink
+    /// [Pinkcoin](http://getstarted.with.pink), symbol "PINK"
     #[cfg_attr(feature = "serde", serde(rename = "PINK"))]
     Pinkcoin,
 
-    /// PiggyCoin, symbol "PIGGY", URL: https://www.piggy-coin.com/
+    /// [PiggyCoin](https://www.piggy-coin.com/), symbol "PIGGY"
     #[cfg_attr(feature = "serde", serde(rename = "PIGGY"))]
     PiggyCoin,
 
-    /// Pivx, symbol "PIVX", URL: https://github.com/PIVX-Project/PIVX
+    /// [Pivx](https://github.com/PIVX-Project/PIVX), symbol "PIVX"
     #[cfg_attr(feature = "serde", serde(rename = "PIVX"))]
     Pivx,
 
-    /// Flashcoin, symbol "FLASH", URL: https://flashcoin.io
+    /// [Flashcoin](https://flashcoin.io), symbol "FLASH"
     #[cfg_attr(feature = "serde", serde(rename = "FLASH"))]
     Flashcoin,
 
-    /// Zencash, symbol "ZEN", URL: https://zensystem.io
+    /// [Zencash](https://zensystem.io), symbol "ZEN"
     #[cfg_attr(feature = "serde", serde(rename = "ZEN"))]
     Zencash,
 
-    /// Putincoin, symbol "PUT", URL: https://putincoin.info
+    /// [Putincoin](https://putincoin.info), symbol "PUT"
     #[cfg_attr(feature = "serde", serde(rename = "PUT"))]
     Putincoin,
 
-    /// BitZeny, symbol "ZNY", URL: http://bitzeny.org/
+    /// [BitZeny](http://bitzeny.org/), symbol "ZNY"
     #[cfg_attr(feature = "serde", serde(rename = "ZNY"))]
     BitZeny,
 
-    /// Unify, symbol "UNIFY", URL: http://unifycryptocurrency.com
+    /// [Unify](http://unifycryptocurrency.com), symbol "UNIFY"
     #[cfg_attr(feature = "serde", serde(rename = "UNIFY"))]
     Unify,
 
-    /// StealthCoin, symbol "XST", URL: http://www.stealthcoin.com
+    /// [StealthCoin](http://www.stealthcoin.com), symbol "XST"
     #[cfg_attr(feature = "serde", serde(rename = "XST"))]
     StealthCoin,
 
-    /// Breakout Coin, symbol "BRK", URL: http://www.breakoutcoin.com
+    /// [Breakout Coin](http://www.breakoutcoin.com), symbol "BRK"
     #[cfg_attr(feature = "serde", serde(rename = "BRK"))]
     BreakoutCoin,
 
-    /// Vcash, symbol "VC", URL: https://vcash.info
+    /// [Vcash](https://vcash.info), symbol "VC"
     #[cfg_attr(feature = "serde", serde(rename = "VC"))]
     Vcash,
 
-    /// Monero, symbol "XMR", URL: https://getmonero.org/
+    /// [Monero](https://getmonero.org/), symbol "XMR"
     #[cfg_attr(feature = "serde", serde(rename = "XMR"))]
     Monero,
 
-    /// Voxels, symbol "VOX", URL: https://www.voxelus.com
+    /// [Voxels](https://www.voxelus.com), symbol "VOX"
     #[cfg_attr(feature = "serde", serde(rename = "VOX"))]
     Voxels,
 
-    /// NavCoin, symbol "NAV", URL: https://github.com/navcoindev/navcoin2
+    /// [NavCoin](https://github.com/navcoindev/navcoin2), symbol "NAV"
     #[cfg_attr(feature = "serde", serde(rename = "NAV"))]
     NavCoin,
 
-    /// Factom Factoids, symbol "FCT", URL: https://github.com/FactomProject/FactomDocs/blob/master/wallet_info/wallet_test_vectors.md
+    /// [Factom Factoids](https://github.com/FactomProject/FactomDocs/blob/master/wallet_info/wallet_test_vectors.md), symbol "FCT"
     #[cfg_attr(feature = "serde", serde(rename = "FCT"))]
     FactomFactoids,
 
-    /// Factom Entry Credits, symbol "EC", URL: https://github.com/FactomProject
+    /// [Factom Entry Credits](https://github.com/FactomProject), symbol "EC"
     #[cfg_attr(feature = "serde", serde(rename = "EC"))]
     FactomEntryCredits,
 
-    /// Zcash, symbol "ZEC", URL: https://z.cash
+    /// [Zcash](https://z.cash), symbol "ZEC"
     #[cfg_attr(feature = "serde", serde(rename = "ZEC"))]
     Zcash,
 
-    /// Lisk, symbol "LSK", URL: https://lisk.io/
+    /// [Lisk](https://lisk.io/), symbol "LSK"
     #[cfg_attr(feature = "serde", serde(rename = "LSK"))]
     Lisk,
 
-    /// Steem, symbol "STEEM", URL: http://steem.io
+    /// [Steem](http://steem.io), symbol "STEEM"
     #[cfg_attr(feature = "serde", serde(rename = "STEEM"))]
     Steem,
 
-    /// ZCoin, symbol "XZC", URL: https://zcoin.io
+    /// [ZCoin](https://zcoin.io), symbol "XZC"
     #[cfg_attr(feature = "serde", serde(rename = "XZC"))]
     ZCoin,
 
-    /// Rootstock, symbol "RSK", URL: http://www.rsk.co/
+    /// [Rootstock](http://www.rsk.co/), symbol "RSK"
     #[cfg_attr(feature = "serde", serde(rename = "RSK"))]
     Rootstock,
 
-    /// RealPointCoin, symbol "RPT", URL: https://github.com/MaxSmile/RealPointCoinQt
+    /// [RealPointCoin](https://github.com/MaxSmile/RealPointCoinQt), symbol "RPT"
     #[cfg_attr(feature = "serde", serde(rename = "RPT"))]
     RealPointCoin,
 
-    /// LBRY Credits, symbol "LBC", URL: https://lbry.io/
+    /// [LBRY Credits](https://lbry.io/), symbol "LBC"
     #[cfg_attr(feature = "serde", serde(rename = "LBC"))]
     LBRYCredits,
 
-    /// Komodo, symbol "KMD", URL: https://komodoplatform.com/
+    /// [Komodo](https://komodoplatform.com/), symbol "KMD"
     #[cfg_attr(feature = "serde", serde(rename = "KMD"))]
     Komodo,
 
-    /// bisq Token, symbol "BSQ", URL: http://bisq.io/
+    /// [bisq Token](http://bisq.io/), symbol "BSQ"
     #[cfg_attr(feature = "serde", serde(rename = "BSQ"))]
     BisqToken,
 
-    /// Riecoin, symbol "RIC", URL: https://github.com/riecoin/riecoin
+    /// [Riecoin](https://github.com/riecoin/riecoin), symbol "RIC"
     #[cfg_attr(feature = "serde", serde(rename = "RIC"))]
     Riecoin,
 
-    /// Ripple, symbol "XRP", URL: https://ripple.com
+    /// [Ripple](https://ripple.com), symbol "XRP"
     #[cfg_attr(feature = "serde", serde(rename = "XRP"))]
     Ripple,
 
-    /// Bitcoin Cash, symbol "BCH", URL: https://www.bitcoincash.org
+    /// [Bitcoin Cash](https://www.bitcoincash.org), symbol "BCH"
     #[cfg_attr(feature = "serde", serde(rename = "BCH"))]
     BitcoinCash,
 
-    /// Neblio, symbol "NEBL", URL: https://nebl.io
+    /// [Neblio](https://nebl.io), symbol "NEBL"
     #[cfg_attr(feature = "serde", serde(rename = "NEBL"))]
     Neblio,
 
-    /// ZClassic, symbol "ZCL", URL: http://zclassic.org/
+    /// [ZClassic](http://zclassic.org/), symbol "ZCL"
     #[cfg_attr(feature = "serde", serde(rename = "ZCL"))]
     ZClassic,
 
-    /// Stellar Lumens, symbol "XLM", URL: https://www.stellar.org/
+    /// [Stellar Lumens](https://www.stellar.org/), symbol "XLM"
     #[cfg_attr(feature = "serde", serde(rename = "XLM"))]
     StellarLumens,
 
-    /// WhaleCoin, symbol "WHL", URL: https://whalecoin.org/
+    /// [WhaleCoin](https://whalecoin.org/), symbol "WHL"
     #[cfg_attr(feature = "serde", serde(rename = "WHL"))]
     WhaleCoin,
 
-    /// EuropeCoin, symbol "ERC", URL: https://www.europecoin.eu.org/
+    /// [EuropeCoin](https://www.europecoin.eu.org/), symbol "ERC"
     #[cfg_attr(feature = "serde", serde(rename = "ERC"))]
     EuropeCoin,
 
-    /// Diamond, symbol "DMD", URL: http://bit.diamonds
+    /// [Diamond](http://bit.diamonds), symbol "DMD"
     #[cfg_attr(feature = "serde", serde(rename = "DMD"))]
     Diamond,
 
-    /// Bytom, symbol "BTM", URL: https://bytom.io
+    /// [Bytom](https://bytom.io), symbol "BTM"
     #[cfg_attr(feature = "serde", serde(rename = "BTM"))]
     Bytom,
 
-    /// Biocoin, symbol "BIO", URL: https://biocoin.bio
+    /// [Biocoin](https://biocoin.bio), symbol "BIO"
     #[cfg_attr(feature = "serde", serde(rename = "BIO"))]
     Biocoin,
 
-    /// Whitecoin, symbol "XWC", URL: https://www.whitecoin.info
+    /// [Whitecoin](https://www.whitecoin.info), symbol "XWC"
     #[cfg_attr(feature = "serde", serde(rename = "XWC"))]
     Whitecoin,
 
-    /// Bitcoin Gold, symbol "BTG", URL: http://www.btcgpu.org
+    /// [Bitcoin Gold](http://www.btcgpu.org), symbol "BTG"
     #[cfg_attr(feature = "serde", serde(rename = "BTG"))]
     BitcoinGold,
 
-    /// SuperSkynet, symbol "SSN", URL: http://wwww.superskynet.org/
+    /// [SuperSkynet](http://wwww.superskynet.org/), symbol "SSN"
     #[cfg_attr(feature = "serde", serde(rename = "SSN"))]
     SuperSkynet,
 
-    /// TOACoin, symbol "TOA", URL: http://www.toacoin.com
+    /// [TOACoin](http://www.toacoin.com), symbol "TOA"
     #[cfg_attr(feature = "serde", serde(rename = "TOA"))]
     TOACoin,
 
-    /// Bitcore, symbol "BTX", URL: https://bitcore.cc
+    /// [Bitcore](https://bitcore.cc), symbol "BTX"
     #[cfg_attr(feature = "serde", serde(rename = "BTX"))]
     Bitcore,
 
-    /// Adcoin, symbol "ACC", URL: https://www.getadcoin.com/
+    /// [Adcoin](https://www.getadcoin.com/), symbol "ACC"
     #[cfg_attr(feature = "serde", serde(rename = "ACC"))]
     Adcoin,
 
-    /// Bridgecoin, symbol "BCO", URL: https://bridgecoin.org/
+    /// [Bridgecoin](https://bridgecoin.org/), symbol "BCO"
     #[cfg_attr(feature = "serde", serde(rename = "BCO"))]
     Bridgecoin,
 
-    /// Ellaism, symbol "ELLA", URL: https://ellaism.org
+    /// [Ellaism](https://ellaism.org), symbol "ELLA"
     #[cfg_attr(feature = "serde", serde(rename = "ELLA"))]
     Ellaism,
 
-    /// Pirl, symbol "PIRL", URL: https://pirl.io
+    /// [Pirl](https://pirl.io), symbol "PIRL"
     #[cfg_attr(feature = "serde", serde(rename = "PIRL"))]
     Pirl,
 
-    /// RaiBlocks, symbol "XRB", URL: https://raiblocks.com
+    /// [RaiBlocks](https://raiblocks.com), symbol "XRB"
     #[cfg_attr(feature = "serde", serde(rename = "XRB"))]
     RaiBlocks,
 
-    /// Vivo, symbol "VIVO", URL: https://www.vivocrypto.com/
+    /// [Vivo](https://www.vivocrypto.com/), symbol "VIVO"
     #[cfg_attr(feature = "serde", serde(rename = "VIVO"))]
     Vivo,
 
-    /// Firstcoin, symbol "FRST", URL: http://firstcoinproject.com
+    /// [Firstcoin](http://firstcoinproject.com), symbol "FRST"
     #[cfg_attr(feature = "serde", serde(rename = "FRST"))]
     Firstcoin,
 
-    /// Helleniccoin, symbol "HNC", URL: http://www.helleniccoin.gr/
+    /// [Helleniccoin](http://www.helleniccoin.gr/), symbol "HNC"
     #[cfg_attr(feature = "serde", serde(rename = "HNC"))]
     Helleniccoin,
 
-    /// BUZZ, symbol "BUZZ", URL: http://www.buzzcoin.info/
+    /// [BUZZ](http://www.buzzcoin.info/), symbol "BUZZ"
     #[cfg_attr(feature = "serde", serde(rename = "BUZZ"))]
     BUZZ,
 
-    /// Ember, symbol "MBRS", URL: https://www.embercoin.io/
+    /// [Ember](https://www.embercoin.io/), symbol "MBRS"
     #[cfg_attr(feature = "serde", serde(rename = "MBRS"))]
     Ember,
 
-    /// Hcash, symbol "HSR", URL: https://h.cash
+    /// [Hcash](https://h.cash), symbol "HSR"
     #[cfg_attr(feature = "serde", serde(rename = "HSR"))]
     Hcash,
 
-    /// HTMLCOIN, symbol "HTML", URL: https://htmlcoin.com/
+    /// [HTMLCOIN](https://htmlcoin.com/), symbol "HTML"
     #[cfg_attr(feature = "serde", serde(rename = "HTML"))]
     HTMLCOIN,
 
-    /// Obsidian, symbol "ODN", URL: https://obsidianplatform.com/
+    /// [Obsidian](https://obsidianplatform.com/), symbol "ODN"
     #[cfg_attr(feature = "serde", serde(rename = "ODN"))]
     Obsidian,
 
-    /// OnixCoin, symbol "ONX", URL: https://www.onixcoin.com/
+    /// [OnixCoin](https://www.onixcoin.com/), symbol "ONX"
     #[cfg_attr(feature = "serde", serde(rename = "ONX"))]
     OnixCoin,
 
-    /// Ravencoin, symbol "RVN", URL: https://ravencoin.org/
+    /// [Ravencoin](https://ravencoin.org/), symbol "RVN"
     #[cfg_attr(feature = "serde", serde(rename = "RVN"))]
     Ravencoin,
 
-    /// GoByte, symbol "GBX", URL: https://gobyte.network
+    /// [GoByte](https://gobyte.network), symbol "GBX"
     #[cfg_attr(feature = "serde", serde(rename = "GBX"))]
     GoByte,
 
-    /// BitcoinZ, symbol "BTCZ", URL: https://btcz.rocks/en/
+    /// [BitcoinZ](https://btcz.rocks/en/), symbol "BTCZ"
     #[cfg_attr(feature = "serde", serde(rename = "BTCZ"))]
     BitcoinZ,
 
-    /// Poa, symbol "POA", URL: https://poa.network
+    /// [Poa](https://poa.network), symbol "POA"
     #[cfg_attr(feature = "serde", serde(rename = "POA"))]
     Poa,
 
-    /// NewYorkCoin, symbol "NYC", URL: http://nycoin.net
+    /// [NewYorkCoin](http://nycoin.net), symbol "NYC"
     #[cfg_attr(feature = "serde", serde(rename = "NYC"))]
     NewYorkCoin,
 
-    /// MarteXcoin, symbol "MXT", URL: http://martexcoin.org
+    /// [MarteXcoin](http://martexcoin.org), symbol "MXT"
     #[cfg_attr(feature = "serde", serde(rename = "MXT"))]
     MarteXcoin,
 
-    /// Wincoin, symbol "WC", URL: https://wincoin.co
+    /// [Wincoin](https://wincoin.co), symbol "WC"
     #[cfg_attr(feature = "serde", serde(rename = "WC"))]
     Wincoin,
 
-    /// Minexcoin, symbol "MNX", URL: https://minexcoin.com
+    /// [Minexcoin](https://minexcoin.com), symbol "MNX"
     #[cfg_attr(feature = "serde", serde(rename = "MNX"))]
     Minexcoin,
 
-    /// Bitcoin Private, symbol "BTCP", URL: https://btcprivate.org
+    /// [Bitcoin Private](https://btcprivate.org), symbol "BTCP"
     #[cfg_attr(feature = "serde", serde(rename = "BTCP"))]
     BitcoinPrivate,
 
-    /// Musicoin, symbol "MUSIC", URL: https://www.musicoin.org
+    /// [Musicoin](https://www.musicoin.org), symbol "MUSIC"
     #[cfg_attr(feature = "serde", serde(rename = "MUSIC"))]
     Musicoin,
 
-    /// World Bitcoin, symbol "WBTC", URL: http://www.wbtcteam.org/
+    /// [World Bitcoin](http://www.wbtcteam.org/), symbol "WBTC"
     #[cfg_attr(feature = "serde", serde(rename = "WBTC"))]
     WorldBitcoin,
 
-    /// Omni, symbol "OMNI", URL: http://www.omnilayer.org
+    /// [Omni](http://www.omnilayer.org), symbol "OMNI"
     #[cfg_attr(feature = "serde", serde(rename = "OMNI"))]
     Omni,
 
-    /// BoxyCoin, symbol "BOXY", URL: http://www.boxycoin.org/
+    /// [BoxyCoin](http://www.boxycoin.org/), symbol "BOXY"
     #[cfg_attr(feature = "serde", serde(rename = "BOXY"))]
     BoxyCoin,
 
-    /// Bitcoin Green, symbol "BITG", URL: https://savebitcoin.io
+    /// [Bitcoin Green](https://savebitcoin.io), symbol "BITG"
     #[cfg_attr(feature = "serde", serde(rename = "BITG"))]
     BitcoinGreen,
 
-    /// AskCoin, symbol "ASK", URL: https://askcoin.org
+    /// [AskCoin](https://askcoin.org), symbol "ASK"
     #[cfg_attr(feature = "serde", serde(rename = "ASK"))]
     AskCoin,
 
-    /// Smartcash, symbol "SMART", URL: https://smartcash.cc
+    /// [Smartcash](https://smartcash.cc), symbol "SMART"
     #[cfg_attr(feature = "serde", serde(rename = "SMART"))]
     Smartcash,
 
-    /// XUEZ, symbol "XUEZ", URL: https://xuezcoin.com
+    /// [XUEZ](https://xuezcoin.com), symbol "XUEZ"
     #[cfg_attr(feature = "serde", serde(rename = "XUEZ"))]
     XUEZ,
 
-    /// Varda, symbol "VAR", URL: https://varda.io
+    /// [Varda](https://varda.io), symbol "VAR"
     #[cfg_attr(feature = "serde", serde(rename = "VAR"))]
     Varda,
 
-    /// Bitcoin Nano, symbol "NANO", URL: https://www.btcnano.org
+    /// [Bitcoin Nano](https://www.btcnano.org), symbol "NANO"
     #[cfg_attr(feature = "serde", serde(rename = "NANO"))]
     BitcoinNano,
 
-    /// Blocknet, symbol "BLOCK", URL: https://blocknet.co/
+    /// [Blocknet](https://blocknet.co/), symbol "BLOCK"
     #[cfg_attr(feature = "serde", serde(rename = "BLOCK"))]
     Blocknet,
 
-    /// MemCoin, symbol "MEM", URL: https://memcoin.org
+    /// [MemCoin](https://memcoin.org), symbol "MEM"
     #[cfg_attr(feature = "serde", serde(rename = "MEM"))]
     MemCoin,
 
-    /// Phore, symbol "PHR", URL: https://phore.io
+    /// [Phore](https://phore.io), symbol "PHR"
     #[cfg_attr(feature = "serde", serde(rename = "PHR"))]
     Phore,
 
-    /// Koto, symbol "KOTO", URL: https://koto.cash/
+    /// [Koto](https://koto.cash/), symbol "KOTO"
     #[cfg_attr(feature = "serde", serde(rename = "KOTO"))]
     Koto,
 
-    /// Radiant, symbol "XRD", URL: https://radiant.cash/
+    /// [Radiant](https://radiant.cash/), symbol "XRD"
     #[cfg_attr(feature = "serde", serde(rename = "XRD"))]
     Radiant,
 
-    /// Bitcoin Smart, symbol "BCS", URL: http://bcs.info
+    /// [Bitcoin Smart](http://bcs.info), symbol "BCS"
     #[cfg_attr(feature = "serde", serde(rename = "BCS"))]
     BitcoinSmart,
 
-    /// Achain, symbol "ACT", URL: https://www.achain.com/
+    /// [Achain](https://www.achain.com/), symbol "ACT"
     #[cfg_attr(feature = "serde", serde(rename = "ACT"))]
     Achain,
 
-    /// Bitcoin World, symbol "BTW", URL: http://btw.one
+    /// [Bitcoin World](http://btw.one), symbol "BTW"
     #[cfg_attr(feature = "serde", serde(rename = "BTW"))]
     BitcoinWorld,
 
-    /// NEO, symbol "NEO", URL: https://neo.org/
+    /// [NEO](https://neo.org/), symbol "NEO"
     #[cfg_attr(feature = "serde", serde(rename = "NEO"))]
     NEO,
 
-    /// Bitcoin Diamond, symbol "BCD", URL: http://btcd.io/
+    /// [Bitcoin Diamond](http://btcd.io/), symbol "BCD"
     #[cfg_attr(feature = "serde", serde(rename = "BCD"))]
     BitcoinDiamond,
 
-    /// Bitcoin New, symbol "BTN", URL: http://bitcoinnew.org/
+    /// [Bitcoin New](http://bitcoinnew.org/), symbol "BTN"
     #[cfg_attr(feature = "serde", serde(rename = "BTN"))]
     BitcoinNew,
 
-    /// Big Bitcoin, symbol "BBC", URL: http://bigbitcoins.org/
+    /// [Big Bitcoin](http://bigbitcoins.org/), symbol "BBC"
     #[cfg_attr(feature = "serde", serde(rename = "BBC"))]
     BigBitcoin,
 
-    /// Bitcoin Candy, symbol "CDY", URL: http://www.bitcoincandy.one
+    /// [Bitcoin Candy](http://www.bitcoincandy.one), symbol "CDY"
     #[cfg_attr(feature = "serde", serde(rename = "CDY"))]
     BitcoinCandy,
 
-    /// Defcoin, symbol "DFC", URL: http://defcoin-ng.org
+    /// [Defcoin](http://defcoin-ng.org), symbol "DFC"
     #[cfg_attr(feature = "serde", serde(rename = "DFC"))]
     Defcoin,
 
-    /// Cardano, symbol "ADA", URL: https://www.cardanohub.org/en/home/
+    /// [Cardano](https://www.cardanohub.org/en/home/), symbol "ADA"
     #[cfg_attr(feature = "serde", serde(rename = "ADA"))]
     Cardano,
 
-    /// HOdlcoin, symbol "HODL", URL: https://hodlcoin.com/
+    /// [HOdlcoin](https://hodlcoin.com/), symbol "HODL"
     #[cfg_attr(feature = "serde", serde(rename = "HODL"))]
     HOdlcoin,
 
-    /// Axe, symbol "AXE", URL: https://github.com/AXErunners/axe
+    /// [Axe](https://github.com/AXErunners/axe), symbol "AXE"
     #[cfg_attr(feature = "serde", serde(rename = "AXE"))]
     Axe,
 
-    /// Bitcoin Pizza, symbol "BPA", URL: http://p.top/
+    /// [Bitcoin Pizza](http://p.top/), symbol "BPA"
     #[cfg_attr(feature = "serde", serde(rename = "BPA"))]
     BitcoinPizza,
 
-    /// BitcoinQuark, symbol "BTQ", URL: https://www.bitcoinquark.org
+    /// [BitcoinQuark](https://www.bitcoinquark.org), symbol "BTQ"
     #[cfg_attr(feature = "serde", serde(rename = "BTQ"))]
     BitcoinQuark,
 
-    /// Super Bitcoin, symbol "SBTC", URL: https://www.superbtc.org
+    /// [Super Bitcoin](https://www.superbtc.org), symbol "SBTC"
     #[cfg_attr(feature = "serde", serde(rename = "SBTC"))]
     SuperBitcoin,
 
-    /// Bitcoin Pay, symbol "BTP", URL: http://www.btceasypay.com
+    /// [Bitcoin Pay](http://www.btceasypay.com), symbol "BTP"
     #[cfg_attr(feature = "serde", serde(rename = "BTP"))]
     BitcoinPay,
 
-    /// Bitcoin Faith, symbol "BTF", URL: http://bitcoinfaith.org
+    /// [Bitcoin Faith](http://bitcoinfaith.org), symbol "BTF"
     #[cfg_attr(feature = "serde", serde(rename = "BTF"))]
     BitcoinFaith,
 
-    /// Bitvote, symbol "BTV", URL: www.bitvote.one
+    /// [Bitvote](www.bitvote.one), symbol "BTV"
     #[cfg_attr(feature = "serde", serde(rename = "BTV"))]
     Bitvote,
 
-    /// Wanchain, symbol "WAN", URL: https://wanchain.org/
+    /// [Wanchain](https://wanchain.org/), symbol "WAN"
     #[cfg_attr(feature = "serde", serde(rename = "WAN"))]
     Wanchain,
 
-    /// Waves, symbol "WAVES", URL: https://wavesplatform.com/
+    /// [Waves](https://wavesplatform.com/), symbol "WAVES"
     #[cfg_attr(feature = "serde", serde(rename = "WAVES"))]
     Waves,
 
@@ -1407,7 +1407,7 @@ impl Coin {
 
 /// List of all [`Coin`]s in the enumeration, in altcoin index order.
 ///
-/// [`Coin`] ./enum.Coin.html
+/// [`Coin`]: ./enum.Coin.html
 pub const COINS: [Coin; 211] = [
     Coin::Bitcoin,
     Coin::Testnet,
