@@ -72,6 +72,7 @@ pub fn base58_check(bytes: &mut Vec<u8>, prefix: &[u8]) -> String {
 fn gen_wallets() {
     use coin::COINS;
 
+    println!("Generating wallets for Bitcoin variants...");
     for coin in COINS.iter() {
         if coin.bitcoin_wif_data().is_some() {
             let wallet = new_wallet(*coin).unwrap();

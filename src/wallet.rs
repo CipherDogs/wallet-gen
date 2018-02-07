@@ -78,3 +78,28 @@ fn test_json() {
         "{\"coin\":\"BTC\",\"address\":\"addr\",\"public_key\":\"pub\",\"private_key\":\"priv\"}"
     );
 }
+
+#[test]
+fn gen_all_wallets() {
+    use coin::COINS;
+
+    println!("Generating wallets for all coins...");
+    for coin in COINS.iter() {
+        let wallet = match Wallet::generate(*coin) {
+            Ok(wallet) => wallet,
+            Err(Error::CoinNotSupported(_)) => continue,
+            Err(e) => panic!(
+                "Error generating wallet for {:?} ({}): {}",
+                coin,
+                coin.symbol(),
+                e,
+            ),
+        };
+
+        println!("Coin: {:?} ({})", coin, coin.symbol());
+        println!("Address: {}", &wallet.address);
+        println!("Public key: {}", &wallet.public_key);
+        println!("Private key: {}", &wallet.private_key);
+        println!();
+    }
+}
