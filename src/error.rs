@@ -16,7 +16,6 @@
 //! Error type for the crate.
 
 use coin::Coin;
-use ed25519_dalek::DecodingError;
 use either::Either;
 use openssl::error as openssl;
 use self::Error::*;
@@ -73,10 +72,6 @@ impl From<&'static str> for Error {
 
 impl From<io::Error> for Error {
     fn from(error: io::Error) -> Self { Error::Io(error) }
-}
-
-impl From<DecodingError> for Error {
-    fn from(error: DecodingError) -> Self { Error::Msg(format!("Error decoding ed25519 key: {}", &error)) }
 }
 
 impl From<openssl::Error> for Error {

@@ -25,7 +25,6 @@
 
 extern crate base58;
 extern crate digest;
-extern crate ed25519_dalek;
 extern crate either;
 
 #[macro_use]
@@ -36,6 +35,7 @@ extern crate tiny_keccak;
 pub mod bitcoin;
 pub mod coin;
 pub mod cryptonote;
+pub mod ed25519;
 pub mod error;
 pub mod ethereum;
 pub mod prelude;
