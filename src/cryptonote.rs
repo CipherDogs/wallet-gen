@@ -143,7 +143,7 @@ pub fn new_wallet(coin: Coin) -> Result<Wallet> {
 
     let view_keypair = {
         let mut buffer = keccak256(spend_keypair.secret.as_bytes().as_ref());
-        keypair_from_bytes(&buffer, &mut ctx)?
+        keypair_from_bytes(&mut buffer, &mut ctx)?
     };
 
     let addr = generate_address(coin, &spend_keypair.public, &view_keypair.public)?;
