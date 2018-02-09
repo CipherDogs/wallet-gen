@@ -24,14 +24,17 @@
 //! [`Coin`]: coin/enum.Coin.html
 
 extern crate base58;
+extern crate digest;
+extern crate ed25519_dalek;
 extern crate either;
 extern crate openssl;
 extern crate tiny_keccak;
 
 pub mod bitcoin;
 pub mod coin;
-pub mod ethereum;
+pub mod cryptonote;
 pub mod error;
+pub mod ethereum;
 pub mod prelude;
 pub mod utils;
 pub mod wallet;

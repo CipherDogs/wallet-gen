@@ -46,7 +46,7 @@ impl Wallet {
 
         match coin {
             Ethereum | EthereumClassic => ethereum::new_wallet(coin),
-            coin if coin.bitcoin_wif_data().is_some() => bitcoin::new_wallet(coin),
+            coin if bitcoin::wif_data(coin).is_some() => bitcoin::new_wallet(coin),
             _ => Err(Error::CoinNotSupported(coin)),
         }
     }

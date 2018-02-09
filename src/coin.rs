@@ -1336,85 +1336,12 @@ impl Coin {
             Coin::__Nonexhaustive => unreachable!(),
         }
     }
-
-    /// Gets the constant data used to generate WIF strings
-    /// in Bitcoin-style wallets.
-    pub fn bitcoin_wif_data(self) -> Option<BitcoinWifData> {
-        Some(match self {
-            Coin::Bitcoin => BitcoinWifData(&[0x00], 0x80, "5", "LK"),
-            Coin::Testnet => BitcoinWifData(&[0x6f], 0xef, "9", "c"),
-            Coin::Litecoin => BitcoinWifData(&[0x30], 0xb0, "6", "T"),
-            Coin::Dogecoin => BitcoinWifData(&[0x1e], 0x9e, "6", "Q"),
-            Coin::Reddcoin => BitcoinWifData(&[0x3d], 0xbd, "7", "UV"),
-            Coin::Dash => BitcoinWifData(&[0x4c], 0xcc, "7", "X"),
-            Coin::Peercoin => BitcoinWifData(&[0x37], 0xb7, "7", "U"),
-            Coin::Namecoin => BitcoinWifData(&[0x34], 0x80, "5", "LK"),
-            Coin::Feathercoin => BitcoinWifData(&[0x0e], 0x8e, "5", "N"),
-            Coin::Blackcoin => BitcoinWifData(&[0x19], 0x99, "6", "P"),
-            Coin::NuBits => BitcoinWifData(&[0x19], 0xbf, "7", "V"),
-            Coin::Mazacoin => BitcoinWifData(&[0x32], 0xe0, "8", "a"),
-            Coin::Viacoin => BitcoinWifData(&[0x47], 0xc7, "7", "W"),
-            Coin::Rubycoin => BitcoinWifData(&[0x3c], 0xbc, "7", "U"),
-            Coin::Digitalcoin => BitcoinWifData(&[0x1e], 0x9e, "6", "Q"),
-            Coin::Cannacoin => BitcoinWifData(&[0x1c], 0x9c, "6", "Q"),
-            Coin::DigiByte => BitcoinWifData(&[0x1e], 0x9e, "6", "Q"),
-            Coin::Primecoin => BitcoinWifData(&[0x17], 0x97, "6", "P"),
-            Coin::Neoscoin => BitcoinWifData(&[0x35], 0xb1, "6", "T"),
-            Coin::Jumbucks => BitcoinWifData(&[0x2b], 0xab, "6", "S"),
-            Coin::Vertcoin => BitcoinWifData(&[0x47], 0x80, "5", "LK"),
-            Coin::MonetaryUnit => BitcoinWifData(&[0x10], 0x7e, "5", "K"),
-            Coin::CanadaeCoin => BitcoinWifData(&[0x1c], 0x9c, "6", "Q"),
-            Coin::ParkByte => BitcoinWifData(&[0x37], 0xb7, "7", "U"),
-            Coin::Pandacoin => BitcoinWifData(&[0x37], 0xb7, "7", "U"),
-            Coin::Particl => BitcoinWifData(&[0x38], 0x6c, "4", "HG"),
-            Coin::Novacoin => BitcoinWifData(&[0x08], 0x88, "5", "M"),
-            Coin::Bitcoindark => BitcoinWifData(&[0x3c], 0xbc, "7", "U"),
-            Coin::Syscoin => BitcoinWifData(&[0x00], 0x80, "5", "LK"),
-            Coin::Smileycoin => BitcoinWifData(&[0x19], 0x99, "6", "P"),
-            Coin::FujiCoin => BitcoinWifData(&[0x24], 0xa4, "6", "R"),
-            Coin::ElectronicGulden => BitcoinWifData(&[0x30], 0xb0, "6", "T"),
-            Coin::Potcoin => BitcoinWifData(&[0x37], 0xb7, "7", "U"),
-            Coin::Quarkcoin => BitcoinWifData(&[0x3a], 0xba, "7", "U"),
-            Coin::Terracoin => BitcoinWifData(&[0x00], 0x80, "5", "LK"),
-            Coin::Gridcoin => BitcoinWifData(&[0x3e], 0xbe, "7", "V"),
-            Coin::Auroracoin => BitcoinWifData(&[0x17], 0x97, "6", "T"),
-            Coin::Gulden => BitcoinWifData(&[0x26], 0xa6, "6", "R"),
-            Coin::Myriadcoin => BitcoinWifData(&[0x32], 0xb2, "6", "T"),
-            Coin::Unobtanium => BitcoinWifData(&[0x82], 0xe0, "8", "a"),
-            Coin::Stratis => BitcoinWifData(&[0x3f], 0xbf, "7", "V"),
-            Coin::MarsCoin => BitcoinWifData(&[0x32], 0xb2, "6", "T"),
-            Coin::Pesetacoin => BitcoinWifData(&[0x2f], 0xaf, "6", "ST"),
-            Coin::Pinkcoin => BitcoinWifData(&[0x03], 0x83, "RQP", "L"),
-            Coin::PiggyCoin => BitcoinWifData(&[0x76], 0xf6, "9", "d"),
-            Coin::Pivx => BitcoinWifData(&[0x1e], 0xd4, "8", "Y"),
-            Coin::BitZeny => BitcoinWifData(&[0x51], 0x80, "5", "LK"),
-            Coin::StealthCoin => BitcoinWifData(&[0x3e], 0xbe, "7", "V"),
-            Coin::Vcash => BitcoinWifData(&[0x47], 0xc7, "7", "W"),
-            Coin::NavCoin => BitcoinWifData(&[0x35], 0x96, "6", "P"),
-            Coin::Zcash => BitcoinWifData(&[0x1c, 0xb8], 0x80, "5", "LK"),
-            Coin::LBRYCredits => BitcoinWifData(&[0x55], 0x80, "5", "LK"),
-            Coin::Riecoin => BitcoinWifData(&[0x3c], 0x80, "5", "LK"),
-            Coin::BitcoinCash => BitcoinWifData(&[0x00], 0x80, "5", "LK"),
-            Coin::BitcoinGold => BitcoinWifData(&[0x26], 0x80, "5", "LK"),
-            Coin::Bitcore => BitcoinWifData(&[0x00], 0x80, "5", "LK"),
-            Coin::Ember => BitcoinWifData(&[0x5c], 0x32, "2", "8"),
-            Coin::HTMLCOIN => BitcoinWifData(&[0x29], 0xa9, "6", "S"),
-            Coin::MarteXcoin => BitcoinWifData(&[0x32], 0xb2, "6", "T"),
-            Coin::Omni => BitcoinWifData(&[0x73], 0xf3, "9", "cd"),
-            Coin::BoxyCoin => BitcoinWifData(&[0x4b], 0xcb, "7", "X"),
-            Coin::Blocknet => BitcoinWifData(&[0x1a], 0x9a, "6", "P"),
-            Coin::HOdlcoin => BitcoinWifData(&[0x28], 0xa8, "5", "LK"),
-            Coin::Axe => BitcoinWifData(&[0x4b], 0xcb, "7", "X"),
-            Coin::__Nonexhaustive => unreachable!(),
-            _ => return None,
-        })
-    }
 }
 
 /// List of all [`Coin`]s in the enumeration, in altcoin index order.
 ///
 /// [`Coin`]: ./enum.Coin.html
-pub const COINS: [Coin; 211] = [
+pub const COINS: [Coin; 212] = [
     Coin::Bitcoin,
     Coin::Testnet,
     Coin::Litecoin,
@@ -1628,48 +1555,3 @@ pub const COINS: [Coin; 211] = [
     Coin::Wanchain,
     Coin::Waves,
 ];
-
-/// Constants for generating addresses and private keys in Bitcoin-based
-/// coins, when converting to Wallet Import Format (WIF).
-#[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
-pub struct BitcoinWifData(&'static [u8], u8, &'static str, &'static str);
-
-impl BitcoinWifData {
-    /// Gets the network version used in WIF conversion.
-    #[inline]
-    pub fn network_version(self) -> &'static [u8] { self.0 }
-
-    /// Gets the prefix to prepend when creating the WIF private key.
-    #[inline]
-    pub fn private_key_prefix(self) -> u8 { self.1 }
-
-    /// Returns the WIF character set for the beginning of the string.
-    #[inline]
-    pub fn wif_start(self) -> &'static str { self.2 }
-
-    /// Returns the CWIF character set for the beginning of the string.
-    #[inline]
-    pub fn cwif_start(self) -> &'static str { self.3 }
-
-    /// See if the given string matches the character set returned by `wif_start()`.
-    pub fn check_wif(self, s: &str) -> bool {
-        for c in self.wif_start().chars() {
-            if s.starts_with(c) {
-                return true;
-            }
-        }
-
-        false
-    }
-
-    /// See if the given string matches the character set returned by `cwif_start()`.
-    pub fn check_cwif(self, s: &str) -> bool {
-        for c in self.cwif_start().chars() {
-            if s.starts_with(c) {
-                return true;
-            }
-        }
-
-        false
-    }
-}
