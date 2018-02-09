@@ -8,6 +8,7 @@ base58 = "*"
 digest = "0.7"
 ed25519-dalek = "0.6"
 either = "1"
+lazy_static = "1"
 openssl = "0.10"
 serde = { version = "1", optional = true, features = ["derive"] }
 tiny-keccak = "1"

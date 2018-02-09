@@ -19,7 +19,7 @@ use base58::ToBase58;
 use ed25519_dalek::{Keypair, SecretKey, PublicKey};
 use openssl::bn::{BigNum, BigNumRef, BigNumContext, BigNumContextRef};
 use openssl::rand::rand_bytes;
-use std::iter;
+use std::{iter, slice};
 use super::prelude::*;
 use tiny_keccak::keccak256;
 use utils::{HexSlice, Sha512};
@@ -33,15 +33,22 @@ fn get_prefix(coin: Coin) -> Option<u8> {
     }
 }
 
+lazy_static! {
+    /* ed25519 constant: (2 ** 252) + 27742317777372353535851937790883648493 */
+    static ref L: BigNum = BigNum::from_dec_str("7237005577332262213973186563042994240857116359379907606001950938285454250989").unwrap();
+}
+
 /// Perform the `sc_reduce32` procedure on the given bytestring, producing
 /// a 256-bit scalar usable as an Ed25519 private key.
-pub fn sc_reduce32(bytes: &[u8; 32], ctx: &mut BigNumContextRef) -> Result<BigNum> {
-    /* l = (2 ** 252) + 27742317777372353535851937790883648493 */
-    let l = BigNum::from_dec_str("7237005577332262213973186563042994240857116359379907606001950938285454250989")?;
+pub fn sc_reduce32(bytes: &mut [u8; 32], ctx: &mut BigNumContextRef) -> Result<BigNum> {
+    // Fix byte ordering
+    #[cfg(target_endian = "little")]
+    bytes.reverse();
 
+    // Perform modulo
     let number = BigNum::from_slice(&bytes[..])?;
     let mut reduced = BigNum::new()?;
-    reduced.checked_rem(&number, &l, ctx)?;
+    reduced.checked_rem(&number, &*L, ctx)?;
     Ok(reduced)
 }
 
@@ -51,9 +58,15 @@ pub fn sc_reduce32(bytes: &[u8; 32], ctx: &mut BigNumContextRef) -> Result<BigNu
 /// [`BigNumRef`]: https://docs.rs/openssl/0.10.2/openssl/bn/struct.BigNumRef.html
 /// [`Vec<u8>`]: https://doc.rust-lang.org/stable/std/vec/struct.Vec.html
 pub fn bn_to_vec32(number: &BigNumRef) -> Vec<u8> {
+    // Adds leading zeros
     let mut result = number.to_vec();
     let missing = 32 - result.len();
     result.splice(..0, iter::repeat(0).take(missing));
+
+    // Fix byte ordering
+    #[cfg(target_endian = "little")]
+    result.reverse();
+
     result
 }
 
@@ -61,7 +74,7 @@ pub fn bn_to_vec32(number: &BigNumRef) -> Vec<u8> {
 /// to ensure that it can be properly transformed into a seed.
 ///
 /// [`sc_reduce32`]: ./fn.sc_reduce32.html
-pub fn keypair_from_bytes(bytes: &[u8; 32], ctx: &mut BigNumContextRef) -> Result<Keypair> {
+pub fn keypair_from_bytes(bytes: &mut [u8; 32], ctx: &mut BigNumContextRef) -> Result<Keypair> {
     let num = sc_reduce32(bytes, ctx)?;
     let vec = bn_to_vec32(&num);
     let priv_key = SecretKey::from_bytes(vec.as_slice())?;
@@ -125,7 +138,7 @@ pub fn new_wallet(coin: Coin) -> Result<Wallet> {
     let spend_keypair = {
         let mut buffer = [0; 32];
         rand_bytes(&mut buffer[..]);
-        keypair_from_bytes(&buffer, &mut ctx)?
+        keypair_from_bytes(&mut buffer, &mut ctx)?
     };
 
     let view_keypair = {

@@ -27,6 +27,9 @@ extern crate base58;
 extern crate digest;
 extern crate ed25519_dalek;
 extern crate either;
+
+#[macro_use]
+extern crate lazy_static;
 extern crate openssl;
 extern crate tiny_keccak;
 
