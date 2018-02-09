@@ -190,9 +190,9 @@ fn gen_wallets() {
     use coin::COINS;
 
     println!("Generating wallets for Bitcoin variants...");
-    for coin in COINS.iter() {
-        if coin.wif_data().is_some() {
-            let wallet = new_wallet(*coin).unwrap();
+    for &coin in COINS.iter() {
+        if wif_data(coin).is_some() {
+            let wallet = new_wallet(coin).unwrap();
             println!("Coin: {:?} ({})", coin, coin.symbol());
             println!("Address: {}", &wallet.address);
             println!("Public key: {}", &wallet.public_key);

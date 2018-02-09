@@ -142,3 +142,8 @@ pub fn new_wallet(coin: Coin) -> Result<Wallet> {
         private_key: HexSlice::new(spend_keypair.secret.as_bytes().as_ref()).format(),
     })
 }
+
+#[test]
+fn gen_xmr_wallet() {
+    println!("XMR {:?}", &new_wallet(Coin::Monero).unwrap());
+}
