@@ -13,6 +13,7 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+use arrayvec::ArrayVec;
 use openssl::bn::{BigNum, BigNumRef, BigNumContextRef};
 use std::iter;
 use super::prelude::*;
@@ -54,7 +55,7 @@ lazy_static! {
     static ref ONE: BigNum = BigNum::from_u32(1).unwrap();
 }
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq, Eq)]
 pub struct Point {
     pub x: BigNum,
     pub y: BigNum,
@@ -70,7 +71,7 @@ impl Point {
 }
 
 pub fn sc_reduce32(bytes: &mut [u8; 32], ctx: &mut BigNumContextRef) -> Result<BigNum> {
-    // To big endian
+    // Fix endianness
     #[cfg(target_endian = "little")]
     bytes.reverse();
 
@@ -82,7 +83,7 @@ pub fn sc_reduce32(bytes: &mut [u8; 32], ctx: &mut BigNumContextRef) -> Result<B
 }
 
 pub fn derive_pubkey(bytes: &mut [u8; 32], ctx: &mut BigNumContextRef) -> Result<()> {
-    // To big endian
+    // Fix endianness
     #[cfg(target_endian = "little")]
     bytes.reverse();
 
@@ -91,27 +92,28 @@ pub fn derive_pubkey(bytes: &mut [u8; 32], ctx: &mut BigNumContextRef) -> Result
     let pt = scalar_mult(&*B, &number, ctx)?;
     encode_point(bytes, &pt);
 
-    // Back to native byte order
-    #[cfg(target_endian = "little")]
-    bytes.reverse();
-
     Ok(())
 }
 
 fn encode_point(bytes: &mut [u8; 32], point: &Point) {
-    let mut bits = [false; 256];
+    // Create bitset
+    let mut bits = ArrayVec::<[bool; 256]>::new();
     for i in 0..255 {
-        bits[i] = point.y.is_bit_set(i as i32);
+        bits.push(point.y.is_bit_set(i));
     }
-    bits[255] = point.x.is_bit_set(0);
+    bits.push(point.x.is_bit_set(0));
 
+    // Pack bytes
     for i in 0..32 {
         let mut byte = 0;
         for j in 0..8 {
-            byte |= 1 << bits[i * 8 + j] as u8;
+            let bit = bits[i * 8 + j] as u8;
+            byte |= bit << j;
         }
         bytes[i] = byte;
     }
+
+    bits.dispose();
 }
 
 pub fn inv(x: &BigNumRef, ctx: &mut BigNumContextRef) -> Result<BigNum> {
@@ -245,4 +247,94 @@ pub fn bn_to_vec32(number: &BigNumRef) -> Vec<u8> {
     result.reverse();
 
     result
+}
+
+#[cfg(test)]
+use openssl::bn::BigNumContext;
+
+#[test]
+fn test_derive_pubkey() {
+    let mut ctx = BigNumContext::new().unwrap();
+    let mut bytes = [
+        0xac, 0xf4, 0x5e, 0x9e, 0x9b, 0x00, 0xda, 0xa8,
+        0x97, 0x60, 0xb9, 0x82, 0xad, 0xe2, 0x57, 0xe2,
+        0x26, 0x82, 0x77, 0x5a, 0x17, 0x70, 0xdb, 0x66,
+        0xbe, 0xb0, 0x57, 0x82, 0x0b, 0x46, 0x77, 0x00,
+    ];
+
+    derive_pubkey(&mut bytes, &mut ctx).unwrap();
+    assert_eq!(
+        &bytes[..],
+        b"\x15\xf4\x4b\x26\x18\x1c\x20\x1a\x44\x59\x80\xbd\xed\x64\x16\x63\xd8\xf9\x12\xf1\x40\x92\x2f\x69\x09\xf7\x12\x49\x77\xc1\x7c\xc7",
+    );
+}
+
+#[test]
+fn test_encode_point() {
+    let mut buffer = [0; 32];
+    encode_point(&mut buffer, &*B);
+    assert_eq!(
+        &buffer[..],
+        b"\x58\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66",
+    );
+
+    encode_point(&mut buffer, &Point {
+        x: BigNum::from_dec_str("239480239840293842309840923").unwrap(),
+        y: BigNum::from_dec_str("58910865193789017923075092").unwrap(),
+    });
+    assert_eq!(
+        &buffer[..],
+        b"\x14\x3c\x51\x36\x52\xf2\xbb\x66\xdc\xba\x30\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x80",
+    );
+}
+
+#[test]
+fn test_edwards() {
+    let mut ctx = BigNumContext::new().unwrap();
+    let pt1 = Point {
+        x: BigNum::from_dec_str("1923374821399491313195").unwrap(),
+        y: BigNum::from_dec_str("886801747184909184381943").unwrap(),
+    };
+    let pt2 = Point {
+        x: BigNum::from_dec_str("6777193769071361351005019").unwrap(),
+        y: BigNum::from_dec_str("99681818311341583949189090").unwrap(),
+    };
+
+    let Point { x, y } = edwards(&pt1, &pt2, &mut ctx).unwrap();
+    assert_eq!(
+        &x,
+        &BigNum::from_dec_str(
+            "19145305399556633246416803965847122123950043313116994625199152792839726592320",
+        ).unwrap(),
+    );
+    assert_eq!(
+        &y,
+        &BigNum::from_dec_str(
+            "1311926177560311914111494945666819815903779764478329976178982182484658429924",
+        ).unwrap(),
+    );
+}
+
+#[test]
+fn test_scalar_mult() {
+    let mut ctx = BigNumContext::new().unwrap();
+    let e = BigNum::from_dec_str("923589108657107938910930183980").unwrap();
+    let pt = Point {
+        x: BigNum::from_dec_str("38049823940823904823904801805").unwrap(),
+        y: BigNum::from_dec_str("90148109258910285903285093819").unwrap(),
+    };
+
+    let Point { x, y } = scalar_mult(&pt, &e, &mut ctx).unwrap();
+    assert_eq!(
+        &x,
+        &BigNum::from_dec_str(
+            "52693087480432376829905685868955052399509450169404031178816965074041171202152",
+        ).unwrap(),
+    );
+    assert_eq!(
+        &y,
+        &BigNum::from_dec_str(
+            "37289752567154786074414612316137518169923258170068403397141657798034183258505",
+        ).unwrap(),
+    );
 }

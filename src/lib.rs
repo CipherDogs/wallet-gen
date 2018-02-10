@@ -23,6 +23,7 @@
 //!
 //! [`Coin`]: coin/enum.Coin.html
 
+extern crate arrayvec;
 extern crate base58;
 extern crate digest;
 extern crate either;

@@ -52,6 +52,7 @@ pub fn new_wallet(coin: Coin) -> Result<Wallet> {
         address:     base58_check(&mut address, bitcoin_data.network_version()),
         public_key:  HexSlice::new(&pub_key).format(),
         private_key: base58_check(&mut priv_key, &[bitcoin_data.private_key_prefix()]),
+        other:       None,
     })
 }
 

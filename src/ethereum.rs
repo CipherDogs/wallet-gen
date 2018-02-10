@@ -44,6 +44,7 @@ pub fn new_wallet(coin: Coin) -> Result<Wallet> {
         address:     format!("0x{:x}", &HexSlice::new(&hash_bytes[12..])),
         public_key:  format!("{:x}", &HexSlice::new(&pub_key)),
         private_key: format!("{:x}", &HexSlice::new(&priv_key[..])),
+        other:       None,
     })
 }
 

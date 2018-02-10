@@ -17,6 +17,7 @@
 //! coin's native WIF, or "wallet import format".
 
 use super::prelude::*;
+use std::collections::HashMap;
 use {bitcoin, ethereum};
 
 /// The actual wallet structure.
@@ -34,6 +35,9 @@ pub struct Wallet {
 
     /// The wallet's private key in WIF format
     pub private_key: String,
+
+    /// Extra fields, depending on the wallet
+    pub other: Option<HashMap<String, String>>,
 }
 
 impl Wallet {
@@ -50,33 +54,6 @@ impl Wallet {
             _ => Err(Error::CoinNotSupported(coin)),
         }
     }
-
-    /// Formats this object as a JSON-formatted string.
-    /// Does not require `serde` to be enabled.
-    pub fn to_json_str(&self) -> String {
-        format!(
-            "{{\"coin\":\"{}\",\"address\":{:?},\"public_key\":{:?},\"private_key\":{:?}}}",
-            self.coin.symbol(),
-            &self.address,
-            &self.public_key,
-            &self.private_key
-        )
-    }
-}
-
-#[test]
-fn test_json() {
-    let wal = Wallet {
-        coin:        Coin::Bitcoin,
-        address:     "addr".into(),
-        public_key:  "pub".into(),
-        private_key: "priv".into(),
-    };
-
-    assert_eq!(
-        &wal.to_json_str(),
-        "{\"coin\":\"BTC\",\"address\":\"addr\",\"public_key\":\"pub\",\"private_key\":\"priv\"}"
-    );
 }
 
 #[test]
@@ -100,6 +77,9 @@ fn gen_all_wallets() {
         println!("Address: {}", &wallet.address);
         println!("Public key: {}", &wallet.public_key);
         println!("Private key: {}", &wallet.private_key);
+        if let Some(ref other) = wallet.other {
+            println!("Other: {:?}", other);
+        }
         println!();
     }
 }
