@@ -17,7 +17,7 @@
 //! coin's native WIF, or "wallet import format".
 
 use super::prelude::*;
-use {bitcoin, ethereum};
+use {bitcoin, cryptonote, ethereum};
 use std::collections::HashMap;
 
 /// The actual wallet structure.
@@ -50,6 +50,7 @@ impl Wallet {
 
         match coin {
             Ethereum | EthereumClassic => ethereum::new_wallet(coin),
+            Monero | Aeon => cryptonote::new_wallet(coin),
             coin if bitcoin::wif_data(coin).is_some() => bitcoin::new_wallet(coin),
             _ => Err(Error::CoinNotSupported(coin)),
         }
