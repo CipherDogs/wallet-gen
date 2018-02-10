@@ -46,8 +46,7 @@ impl error::Error for Error {
 
     fn cause(&self) -> Option<&error::Error> {
         match *self {
-            StaticMsg(_) | Msg(_) => None,
-            CoinNotSupported(_) => None,
+            StaticMsg(_) | Msg(_) | CoinNotSupported(_) => None,
             Io(ref e) => Some(e),
             OpenSsl(Either::Left(ref e)) => Some(e),
             OpenSsl(Either::Right(ref e)) => Some(e),

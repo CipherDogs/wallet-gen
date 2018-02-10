@@ -37,8 +37,6 @@ pub fn new_wallet(coin: Coin) -> Result<Wallet> {
     let priv_key = key.private_key().to_vec();
     let hash_bytes = keccak256(&pub_key);
 
-    let todo_coin_processing = coin;
-
     Ok(Wallet {
         coin:        coin,
         address:     format!("0x{:x}", &HexSlice::new(&hash_bytes[12..])),

@@ -146,9 +146,9 @@ pub fn edwards(pt1: &Point, pt2: &Point, ctx: &mut BigNumContextRef) -> Result<P
     let x_mul = {
         /* x_mul = x1 * y2 + x2 * y1 */
         let mut a = BigNum::new()?;
-        a.checked_mul(&x1, &y2, ctx)?;
+        a.checked_mul(x1, y2, ctx)?;
         let mut b = BigNum::new()?;
-        b.checked_mul(&x2, &y1, ctx)?;
+        b.checked_mul(x2, y1, ctx)?;
         let mut result = BigNum::new()?;
         result.checked_add(&a, &b)?;
         result
@@ -157,9 +157,9 @@ pub fn edwards(pt1: &Point, pt2: &Point, ctx: &mut BigNumContextRef) -> Result<P
     let y_mul = {
         /* y_mul = y1 * y2 + x1 * x2 */
         let mut a = BigNum::new()?;
-        a.checked_mul(&y1, &y2, ctx)?;
+        a.checked_mul(y1, y2, ctx)?;
         let mut b = BigNum::new()?;
-        b.checked_mul(&x1, &x2, ctx)?;
+        b.checked_mul(x1, x2, ctx)?;
         let mut result = BigNum::new()?;
         result.checked_add(&a, &b)?;
         result
@@ -168,13 +168,13 @@ pub fn edwards(pt1: &Point, pt2: &Point, ctx: &mut BigNumContextRef) -> Result<P
     let d_mul = {
         /* d_mul = D * x1 * x2 * y1 * y2 */
         let mut a = BigNum::new()?;
-        a.checked_mul(&*D, &x1, ctx)?;
+        a.checked_mul(&*D, x1, ctx)?;
         let mut b = BigNum::new()?;
-        b.checked_mul(&a, &x2, ctx)?;
+        b.checked_mul(&a, x2, ctx)?;
         let mut c = BigNum::new()?;
-        c.checked_mul(&b, &y1, ctx)?;
+        c.checked_mul(&b, y1, ctx)?;
         let mut result = BigNum::new()?;
-        result.checked_mul(&c, &y2, ctx)?;
+        result.checked_mul(&c, y2, ctx)?;
         result
     };
 
@@ -227,13 +227,13 @@ pub fn scalar_mult(p: &Point, e: &BigNumRef, ctx: &mut BigNumContextRef) -> Resu
     q = edwards(&q, &q, ctx)?;
 
     if e.is_bit_set(0) {
-        q = edwards(&q, &p, ctx)?;
+        q = edwards(&q, p, ctx)?;
     }
 
     q.to_owned()
 }
 
-/// Converts an OpenSsl [`BigNumRef`] into a [`Vec<u8>`] in big-endian form,
+/// Converts an OpenSSL [`BigNumRef`] into a [`Vec<u8>`] in big-endian form,
 /// padding it with zero bytes until it is 32 bytes long.
 ///
 /// [`BigNumRef`]: https://docs.rs/openssl/0.10.2/openssl/bn/struct.BigNumRef.html

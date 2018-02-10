@@ -39,7 +39,7 @@ impl PrivateKey {
     }
 
     /// Gets a copy of this private key's bytes
-    pub fn to_bytes(&self) -> [u8; 32] { self.0.clone() }
+    pub fn to_bytes(&self) -> [u8; 32] { self.0 }
 
     /// Gets a reference to the internally stored private key bytes
     pub fn as_bytes(&self) -> &[u8; 32] { &self.0 }
@@ -69,7 +69,7 @@ impl PublicKey {
     }
 
     /// Gets a copy of this public key's bytes
-    pub fn to_bytes(&self) -> [u8; 32] { self.0.clone() }
+    pub fn to_bytes(&self) -> [u8; 32] { self.0 }
 
     /// Gets a reference to the internally stored public key bytes
     pub fn as_bytes(&self) -> &[u8; 32] { &self.0 }

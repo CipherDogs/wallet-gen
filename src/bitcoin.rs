@@ -62,7 +62,7 @@ pub fn new_wallet(coin: Coin) -> Result<Wallet> {
 /// This function modifies the buffer, prepending the
 /// "application/version" byte.
 pub fn base58_check(bytes: &mut Vec<u8>, prefix: &[u8]) -> String {
-    bytes.splice(..0, prefix.iter().map(|s| *s));
+    bytes.splice(..0, prefix.iter().cloned());
     let hash = sha256(bytes);
     let checksum = &sha256(&hash[..])[..4];
     bytes.write_all(checksum).unwrap();
@@ -115,6 +115,7 @@ impl BitcoinWifData {
 }
 
 /// Gets the constant data used to generate WIF addresses.
+#[allow(match_same_arms)]
 pub fn wif_data(coin: Coin) -> Option<BitcoinWifData> {
     Some(match coin {
         Coin::Bitcoin => BitcoinWifData(&[0x00], 0x80, "5", "LK"),
