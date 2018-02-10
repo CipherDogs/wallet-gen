@@ -17,13 +17,13 @@
 
 use super::prelude::*;
 use base58::ToBase58;
+use hex_slice::HexSlice;
 use openssl::bn::BigNumContext;
 use openssl::ec::{EcGroup, EcKey, PointConversionForm};
 use openssl::hash::{hash, MessageDigest};
 use openssl::nid::Nid;
 use openssl::sha::sha256;
 use std::io::Write;
-use utils::HexSlice;
 
 /// Generate a new wallet based on the Bitcoin style of producing [`Wallet`]s.
 /// For Bitcoin and Bitcoin variants.

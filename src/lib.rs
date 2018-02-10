@@ -44,6 +44,6 @@ pub mod cryptonote;
 pub mod ed25519;
 pub mod error;
 pub mod ethereum;
+pub mod hex_slice;
 pub mod prelude;
-pub mod utils;
 pub mod wallet;

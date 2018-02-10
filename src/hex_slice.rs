@@ -1,5 +1,5 @@
 /*
- * utils/hex_slice.rs
+ * hex_slice.rs
  *
  * Copyright 2018 Standard Mining
  *

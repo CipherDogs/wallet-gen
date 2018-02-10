@@ -19,12 +19,12 @@ use super::prelude::*;
 use arrayvec::ArrayVec;
 use base58::ToBase58;
 use ed25519::{keypair_from_bytes, PublicKey};
+use hex_slice::HexSlice;
 use openssl::bn::BigNumContext;
 use openssl::rand::rand_bytes;
 use std::collections::HashMap;
 use std::io::Write;
 use tiny_keccak::keccak256;
-use utils::HexSlice;
 
 fn get_prefix(coin: Coin) -> Option<&'static [u8]> {
     match coin {

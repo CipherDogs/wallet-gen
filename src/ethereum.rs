@@ -16,11 +16,11 @@
 //! Various functions related to Ethereum wallet generation and validation.
 
 use super::prelude::*;
+use hex_slice::HexSlice;
 use openssl::bn::BigNumContext;
 use openssl::ec::{EcGroup, EcKey, PointConversionForm};
 use openssl::nid::Nid;
 use tiny_keccak::keccak256;
-use utils::HexSlice;
 
 /// Generate a new Ethereum or Ethereum derivative or smart contract wallet.
 pub fn new_wallet(coin: Coin) -> Result<Wallet> {
