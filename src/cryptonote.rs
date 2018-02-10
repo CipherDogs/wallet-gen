@@ -15,14 +15,14 @@
 
 //! Various functions related to Cryptonote (e.g. Monero) wallet generation and validation.
 
+use super::prelude::*;
 use arrayvec::ArrayVec;
 use base58::ToBase58;
-use ed25519::{PublicKey, keypair_from_bytes};
+use ed25519::{keypair_from_bytes, PublicKey};
 use openssl::bn::BigNumContext;
 use openssl::rand::rand_bytes;
 use std::collections::HashMap;
 use std::io::Write;
-use super::prelude::*;
 use tiny_keccak::keccak256;
 use utils::HexSlice;
 
@@ -108,11 +108,11 @@ pub fn from_seed(coin: Coin, seed: [u8; 32]) -> Result<Wallet> {
     let addr = generate_address(coin, &spend_keypair.public, &view_keypair.public)?;
 
     Ok(Wallet {
-        coin: coin,
-        address: addr,
-        public_key: HexSlice::new(spend_keypair.public.as_ref()).format(),
+        coin:        coin,
+        address:     addr,
+        public_key:  HexSlice::new(spend_keypair.public.as_ref()).format(),
         private_key: HexSlice::new(spend_keypair.private.as_ref()).format(),
-        other: {
+        other:       {
             let mut map = HashMap::new();
             map.insert(
                 "view_public_key".into(),
@@ -140,10 +140,9 @@ fn gen_aeon_wallet() {
 #[test]
 fn test_xmr_wallet() {
     let seed = [
-        0xbd, 0xb2, 0x5d, 0x9d, 0x7b, 0xdb, 0xda, 0x38,
-        0x97, 0xf6, 0xc9, 0x42, 0x7a, 0xd6, 0x57, 0xd1,
-        0x56, 0x75, 0xa9, 0x4a, 0x06, 0xf0, 0xdb, 0x66,
-        0xb9, 0xb0, 0x53, 0xb0, 0xb2, 0x78, 0xa8, 0x00,
+        0xbd, 0xb2, 0x5d, 0x9d, 0x7b, 0xdb, 0xda, 0x38, 0x97, 0xf6, 0xc9, 0x42, 0x7a, 0xd6, 0x57,
+        0xd1, 0x56, 0x75, 0xa9, 0x4a, 0x06, 0xf0, 0xdb, 0x66, 0xb9, 0xb0, 0x53, 0xb0, 0xb2, 0x78,
+        0xa8, 0x00,
     ];
 
     let wallet = from_seed(Coin::Monero, seed).unwrap();

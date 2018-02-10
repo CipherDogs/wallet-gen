@@ -13,10 +13,10 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-use arrayvec::ArrayVec;
-use openssl::bn::{BigNum, BigNumRef, BigNumContextRef};
-use std::iter;
 use super::prelude::*;
+use arrayvec::ArrayVec;
+use openssl::bn::{BigNum, BigNumContextRef, BigNumRef};
+use std::iter;
 
 lazy_static! {
     /* ed25519 constants: */
@@ -134,8 +134,14 @@ pub fn edwards(pt1: &Point, pt2: &Point, ctx: &mut BigNumContextRef) -> Result<P
      * -> (x3 % Q, y3 % Q)
      */
 
-    let &Point {x: ref x1, y: ref y1} = pt1;
-    let &Point {x: ref x2, y: ref y2} = pt2;
+    let &Point {
+        x: ref x1,
+        y: ref y1,
+    } = pt1;
+    let &Point {
+        x: ref x2,
+        y: ref y2,
+    } = pt2;
 
     let x_mul = {
         /* x_mul = x1 * y2 + x2 * y1 */
@@ -204,10 +210,7 @@ pub fn edwards(pt1: &Point, pt2: &Point, ctx: &mut BigNumContextRef) -> Result<P
         result
     };
 
-    Ok(Point {
-        x: x3_q,
-        y: y3_q,
-    })
+    Ok(Point { x: x3_q, y: y3_q })
 }
 
 pub fn scalar_mult(p: &Point, e: &BigNumRef, ctx: &mut BigNumContextRef) -> Result<Point> {
@@ -256,10 +259,9 @@ use openssl::bn::BigNumContext;
 fn test_derive_pubkey() {
     let mut ctx = BigNumContext::new().unwrap();
     let mut bytes = [
-        0xac, 0xf4, 0x5e, 0x9e, 0x9b, 0x00, 0xda, 0xa8,
-        0x97, 0x60, 0xb9, 0x82, 0xad, 0xe2, 0x57, 0xe2,
-        0x26, 0x82, 0x77, 0x5a, 0x17, 0x70, 0xdb, 0x66,
-        0xbe, 0xb0, 0x57, 0x82, 0x0b, 0x46, 0x77, 0x00,
+        0xac, 0xf4, 0x5e, 0x9e, 0x9b, 0x00, 0xda, 0xa8, 0x97, 0x60, 0xb9, 0x82, 0xad, 0xe2, 0x57,
+        0xe2, 0x26, 0x82, 0x77, 0x5a, 0x17, 0x70, 0xdb, 0x66, 0xbe, 0xb0, 0x57, 0x82, 0x0b, 0x46,
+        0x77, 0x00,
     ];
 
     derive_pubkey(&mut bytes, &mut ctx).unwrap();
@@ -278,10 +280,13 @@ fn test_encode_point() {
         b"\x58\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66\x66",
     );
 
-    encode_point(&mut buffer, &Point {
-        x: BigNum::from_dec_str("239480239840293842309840923").unwrap(),
-        y: BigNum::from_dec_str("58910865193789017923075092").unwrap(),
-    });
+    encode_point(
+        &mut buffer,
+        &Point {
+            x: BigNum::from_dec_str("239480239840293842309840923").unwrap(),
+            y: BigNum::from_dec_str("58910865193789017923075092").unwrap(),
+        },
+    );
     assert_eq!(
         &buffer[..],
         b"\x14\x3c\x51\x36\x52\xf2\xbb\x66\xdc\xba\x30\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x80",

@@ -22,9 +22,9 @@ mod keys;
 
 pub use self::keys::{Keypair, PrivateKey, PublicKey};
 
-use openssl::bn::BigNumContextRef;
 use super::prelude;
 use super::prelude::*;
+use openssl::bn::BigNumContextRef;
 
 /// Creates an ed25519 [`Keypair`] from the given random seed.
 ///
@@ -34,7 +34,7 @@ pub fn keypair_from_bytes(bytes: [u8; 32], ctx: &mut BigNumContextRef) -> Result
     let pub_key = PublicKey::from_private(&priv_key, ctx)?;
 
     Ok(Keypair {
-        public: pub_key,
+        public:  pub_key,
         private: priv_key,
     })
 }

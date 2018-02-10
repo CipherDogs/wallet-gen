@@ -13,10 +13,10 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-use openssl::bn::BigNumContextRef;
-use ed25519::crypto::{bn_to_vec32, derive_pubkey, sc_reduce32};
-use std::ops::Deref;
 use super::prelude::*;
+use ed25519::crypto::{derive_pubkey, bn_to_vec32, sc_reduce32};
+use openssl::bn::BigNumContextRef;
+use std::ops::Deref;
 
 /// An ed25519 private key.
 #[derive(Debug, Clone)]
@@ -39,28 +39,20 @@ impl PrivateKey {
     }
 
     /// Gets a copy of this private key's bytes
-    pub fn to_bytes(&self) -> [u8; 32] {
-        self.0.clone()
-    }
+    pub fn to_bytes(&self) -> [u8; 32] { self.0.clone() }
 
     /// Gets a reference to the internally stored private key bytes
-    pub fn as_bytes(&self) -> &[u8; 32] {
-        &self.0
-    }
+    pub fn as_bytes(&self) -> &[u8; 32] { &self.0 }
 }
 
 impl Deref for PrivateKey {
     type Target = [u8; 32];
 
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
+    fn deref(&self) -> &Self::Target { &self.0 }
 }
 
 impl AsRef<[u8]> for PrivateKey {
-    fn as_ref(&self) -> &[u8] {
-        &self.0[..]
-    }
+    fn as_ref(&self) -> &[u8] { &self.0[..] }
 }
 
 /// An ed25519 public key.
@@ -77,28 +69,20 @@ impl PublicKey {
     }
 
     /// Gets a copy of this public key's bytes
-    pub fn to_bytes(&self) -> [u8; 32] {
-        self.0.clone()
-    }
+    pub fn to_bytes(&self) -> [u8; 32] { self.0.clone() }
 
     /// Gets a reference to the internally stored public key bytes
-    pub fn as_bytes(&self) -> &[u8; 32] {
-        &self.0
-    }
+    pub fn as_bytes(&self) -> &[u8; 32] { &self.0 }
 }
 
 impl Deref for PublicKey {
     type Target = [u8; 32];
 
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
+    fn deref(&self) -> &Self::Target { &self.0 }
 }
 
 impl AsRef<[u8]> for PublicKey {
-    fn as_ref(&self) -> &[u8] {
-        &self.0[..]
-    }
+    fn as_ref(&self) -> &[u8] { &self.0[..] }
 }
 
 /// A ed25519 keypair, containing both a private and public part.

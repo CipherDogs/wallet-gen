@@ -17,8 +17,8 @@
 //! coin's native WIF, or "wallet import format".
 
 use super::prelude::*;
-use std::collections::HashMap;
 use {bitcoin, ethereum};
+use std::collections::HashMap;
 
 /// The actual wallet structure.
 #[derive(Debug, Clone)]
@@ -65,12 +65,14 @@ fn gen_all_wallets() {
         let wallet = match Wallet::generate(*coin) {
             Ok(wallet) => wallet,
             Err(Error::CoinNotSupported(_)) => continue,
-            Err(e) => panic!(
-                "Error generating wallet for {:?} ({}): {}",
-                coin,
-                coin.symbol(),
-                e,
-            ),
+            Err(e) => {
+                panic!(
+                    "Error generating wallet for {:?} ({}): {}",
+                    coin,
+                    coin.symbol(),
+                    e,
+                )
+            },
         };
 
         println!("Coin: {:?} ({})", coin, coin.symbol());

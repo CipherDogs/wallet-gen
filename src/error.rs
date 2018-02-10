@@ -15,10 +15,10 @@
 
 //! Error type for the crate.
 
+use self::Error::*;
 use coin::Coin;
 use either::Either;
 use openssl::error as openssl;
-use self::Error::*;
 use std::{error, fmt, io};
 
 /// Enum that stores various possible error types when generating wallets.
