@@ -1,4 +1,4 @@
-## walletgen
+## wallet-gen
 A Rust library for creating cryptocurrency wallets.
 
 Adds `#[derive(Serialize, Deserialize)]` and naming for coins

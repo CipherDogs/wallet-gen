@@ -1,7 +1,7 @@
 [package]
 name = "wallet-gen"
 version = "0.3.2"
-authors = ["Ammon Smith <ammon.i.smith@gmail.com>"]
+authors = ["Standard Mining", "Ammon Smith <ammon.i.smith@gmail.com>"]
 
 include = [
     "**/*.rs",
