@@ -15,6 +15,7 @@
 
 #![deny(missing_debug_implementations, missing_docs)]
 #![warn(missing_docs)]
+#![allow(unknown_lints)]
 
 //! A Rust library to generate various cryptocurrency wallets.
 //!
