@@ -3,6 +3,11 @@ name = "wallet-gen"
 version = "0.3.2"
 authors = ["Ammon Smith <ammon.i.smith@gmail.com>"]
 
+include = [
+    "**/*.rs",
+    "Cargo.toml",
+]
+
 [dependencies]
 arrayvec = "0.4"
 base58 = "0.1"
