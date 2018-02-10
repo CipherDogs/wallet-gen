@@ -34,6 +34,10 @@ extern crate lazy_static;
 extern crate openssl;
 extern crate tiny_keccak;
 
+#[cfg(feature = "serde")]
+#[macro_use]
+extern crate serde;
+
 pub mod bitcoin;
 pub mod coin;
 pub mod cryptonote;
