@@ -26,11 +26,11 @@ use super::prelude::*;
 use tiny_keccak::keccak256;
 use utils::HexSlice;
 
-fn get_prefix(coin: Coin) -> Option<u8> {
+fn get_prefix(coin: Coin) -> Option<&'static [u8]> {
     match coin {
-        Coin::Testnet => Some(0x35),
-        Coin::Monero => Some(0x12),
-        Coin::Aeon => Some(0xb2),
+        Coin::Testnet => Some(&[0x35]),
+        Coin::Monero => Some(&[0x12]),
+        Coin::Aeon => Some(&[0xb2, 0x01]),
         _ => None,
     }
 }
@@ -42,7 +42,7 @@ pub fn generate_address(coin: Coin, spend_key: &PublicKey, view_key: &PublicKey)
 
     // Add coin prefix
     match get_prefix(coin) {
-        Some(prefix) => bytes.push(prefix),
+        Some(prefix) => bytes.write_all(prefix).unwrap(),
         None => return Err(Error::CoinNotSupported(coin)),
     };
 
@@ -51,26 +51,26 @@ pub fn generate_address(coin: Coin, spend_key: &PublicKey, view_key: &PublicKey)
     bytes.write_all(view_key.as_ref()).unwrap();
 
     // Add checksum
-    debug_assert_eq!(bytes.len(), 65);
     let hash = keccak256(bytes.as_slice());
     bytes.write_all(&hash[..4]).unwrap();
 
     // Convert to base58 in 8 byte chunks
-    debug_assert_eq!(bytes.len(), 69);
     let mut base58 = String::new();
     for chunk in bytes.as_slice().chunks(8) {
         let mut part = chunk.to_base58();
-        let missing = if chunk.len() == 8 {
-            11 - part.len()
-        } else {
-            7 - part.len()
+        let exp_len = match chunk.len() {
+            8 => 11,
+            6 => 9,
+            5 => 7,
+            _ => panic!("Invalid chunk length: {}", chunk.len()),
         };
-
+        let missing = exp_len - part.len();
         if missing > 0 {
             part.insert_str(0, &"11111111111"[..missing]);
         }
         base58.push_str(&part);
     }
+
     Ok(base58)
 }
 
@@ -130,6 +130,11 @@ pub fn from_seed(coin: Coin, seed: [u8; 32]) -> Result<Wallet> {
 #[test]
 fn gen_xmr_wallet() {
     println!("XMR {:?}", &new_wallet(Coin::Monero).unwrap());
+}
+
+#[test]
+fn gen_aeon_wallet() {
+    println!("AEON {:?}", &new_wallet(Coin::Aeon).unwrap());
 }
 
 #[test]
