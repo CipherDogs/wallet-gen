@@ -16,12 +16,12 @@
 //! Various functions related to Cryptonote (e.g. Monero) wallet generation and validation.
 
 use base58::ToBase58;
-use ed25519::{Keypair, PublicKey, PrivateKey, keypair_from_bytes};
+use ed25519::{PublicKey, keypair_from_bytes};
 use openssl::bn::BigNumContext;
 use openssl::rand::rand_bytes;
 use super::prelude::*;
 use tiny_keccak::keccak256;
-use utils::{HexSlice, Sha512};
+use utils::HexSlice;
 
 fn get_prefix(coin: Coin) -> Option<u8> {
     match coin {
@@ -83,7 +83,7 @@ pub fn new_wallet(coin: Coin) -> Result<Wallet> {
 
     let spend_keypair = {
         let mut buffer = [0; 32];
-        rand_bytes(&mut buffer[..]);
+        rand_bytes(&mut buffer[..])?;
         keypair_from_bytes(buffer, &mut ctx)?
     };
 

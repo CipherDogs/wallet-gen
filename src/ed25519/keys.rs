@@ -13,32 +13,37 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-use openssl::bn::{BigNumContext, BigNumContextRef};
-use ed25519::{bn_to_vec32, sc_reduce32};
+use openssl::bn::BigNumContextRef;
+use ed25519::crypto::{bn_to_vec32, derive_pubkey, sc_reduce32};
 use std::ops::Deref;
 use super::prelude::*;
 
+/// An ed25519 private key.
 #[derive(Debug, Clone)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub struct PrivateKey([u8; 32]);
 
 impl PrivateKey {
+    /// Generate a private key from the given seed. The byte data will be converted
+    /// to a valid private ed25519 key.
     pub fn from_bytes(mut bytes: [u8; 32], ctx: &mut BigNumContextRef) -> Result<Self> {
         let bn = sc_reduce32(&mut bytes, ctx)?;
         let vec = bn_to_vec32(&bn);
 
         {
             let dest = &mut bytes[..];
-            dest.copy_from_slice(&vec[..]);
+            dest.copy_from_slice(vec.as_slice());
         }
 
         Ok(PrivateKey(bytes))
     }
 
+    /// Gets a copy of this private key's bytes
     pub fn to_bytes(&self) -> [u8; 32] {
         self.0.clone()
     }
 
+    /// Gets a reference to the internally stored private key bytes
     pub fn as_bytes(&self) -> &[u8; 32] {
         &self.0
     }
@@ -58,19 +63,25 @@ impl AsRef<[u8]> for PrivateKey {
     }
 }
 
+/// An ed25519 public key.
 #[derive(Debug, Clone)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub struct PublicKey([u8; 32]);
 
 impl PublicKey {
-    pub fn from_private(_priv: &PrivateKey) -> Result<Self> {
-        unimplemented!()
+    /// Calculates the ed25519 public key from the given private key.
+    pub fn from_private(priv_key: &PrivateKey, ctx: &mut BigNumContextRef) -> Result<Self> {
+        let mut bytes = priv_key.to_bytes();
+        derive_pubkey(&mut bytes, ctx)?;
+        Ok(PublicKey(bytes))
     }
 
+    /// Gets a copy of this public key's bytes
     pub fn to_bytes(&self) -> [u8; 32] {
         self.0.clone()
     }
 
+    /// Gets a reference to the internally stored public key bytes
     pub fn as_bytes(&self) -> &[u8; 32] {
         &self.0
     }
@@ -90,9 +101,13 @@ impl AsRef<[u8]> for PublicKey {
     }
 }
 
+/// A ed25519 keypair, containing both a private and public part.
 #[derive(Debug, Clone)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub struct Keypair {
+    /// The public key.
     pub public: PublicKey,
+
+    /// The private key.
     pub private: PrivateKey,
 }

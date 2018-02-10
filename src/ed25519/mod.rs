@@ -20,7 +20,6 @@
 mod crypto;
 mod keys;
 
-pub use self::crypto::*; // FIXME
 pub use self::keys::{Keypair, PrivateKey, PublicKey};
 
 use openssl::bn::BigNumContextRef;
@@ -32,7 +31,7 @@ use super::prelude::*;
 /// [`Keypair`]: ./keys/struct.Keypair.html
 pub fn keypair_from_bytes(bytes: [u8; 32], ctx: &mut BigNumContextRef) -> Result<Keypair> {
     let priv_key = PrivateKey::from_bytes(bytes, ctx)?;
-    let pub_key = PublicKey::from_private(&priv_key)?;
+    let pub_key = PublicKey::from_private(&priv_key, ctx)?;
 
     Ok(Keypair {
         public: pub_key,
