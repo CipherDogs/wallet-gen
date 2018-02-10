@@ -17,7 +17,5 @@
 //! for library consumers.
 
 mod hex_slice;
-mod sha512;
 
 pub use self::hex_slice::HexSlice;
-pub use self::sha512::Sha512;
