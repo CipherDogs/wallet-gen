@@ -1,11 +1,17 @@
 [package]
 name = "wallet-gen"
 version = "0.3.2"
+
+repository = "https://gitlab.com/standard-mining/wallet-gen"
+readme = "./README.md"
+license = "MIT"
 authors = ["Standard Mining", "Ammon Smith <ammon.i.smith@gmail.com>"]
 
 include = [
     "**/*.rs",
     "Cargo.toml",
+    "README.md",
+    "LICENSE",
 ]
 
 [dependencies]
