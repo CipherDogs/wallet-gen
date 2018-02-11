@@ -2,6 +2,7 @@
 name = "wallet-gen"
 version = "0.3.2"
 
+description = "Rust library to mass-generate wallets for many different cryptocurrencies"
 repository = "https://gitlab.com/standard-mining/wallet-gen"
 readme = "./README.md"
 license = "MIT"
