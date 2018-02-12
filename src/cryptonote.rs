@@ -23,7 +23,6 @@ use hex_slice::HexSlice;
 use openssl::bn::BigNumContext;
 use openssl::rand::rand_bytes;
 use std::collections::HashMap;
-use std::io::Write;
 use tiny_keccak::keccak256;
 
 fn get_prefix(coin: Coin) -> Option<&'static [u8]> {
@@ -42,17 +41,17 @@ pub fn generate_address(coin: Coin, spend_key: &PublicKey, view_key: &PublicKey)
 
     // Add coin prefix
     match get_prefix(coin) {
-        Some(prefix) => bytes.write_all(prefix).unwrap(),
+        Some(prefix) => bytes.extend(prefix.iter().cloned()),
         None => return Err(Error::CoinNotSupported(coin)),
     };
 
     // Add public keys
-    bytes.write_all(spend_key.as_ref()).unwrap();
-    bytes.write_all(view_key.as_ref()).unwrap();
+    bytes.extend(spend_key.iter().cloned());
+    bytes.extend(view_key.iter().cloned());
 
     // Add checksum
-    let hash = keccak256(bytes.as_slice());
-    bytes.write_all(&hash[..4]).unwrap();
+    let hash = &keccak256(bytes.as_slice())[..4];
+    bytes.extend(hash.iter().cloned());
 
     // Convert to base58 in 8 byte chunks
     let mut base58 = String::new();

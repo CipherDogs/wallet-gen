@@ -23,7 +23,6 @@ use openssl::ec::{EcGroup, EcKey, PointConversionForm};
 use openssl::hash::{hash, MessageDigest};
 use openssl::nid::Nid;
 use openssl::sha::sha256;
-use std::io::Write;
 
 /// Generate a new wallet based on the Bitcoin style of producing [`Wallet`]s.
 /// For Bitcoin and Bitcoin variants.
@@ -65,7 +64,7 @@ pub fn base58_check(bytes: &mut Vec<u8>, prefix: &[u8]) -> String {
     bytes.splice(..0, prefix.iter().cloned());
     let hash = sha256(bytes);
     let checksum = &sha256(&hash[..])[..4];
-    bytes.write_all(checksum).unwrap();
+    bytes.extend(checksum.iter().cloned());
     bytes.as_slice().to_base58()
 }
 
