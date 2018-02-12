@@ -91,11 +91,10 @@ pub fn new_wallet(coin: Coin) -> Result<Wallet> {
 ///
 /// The "public" and "private" keys are only that of the spend keypair. To
 /// determine the view keys, you must perform the [`keccak256`] hash on the
-/// private key and use the [`sc_reduce32`] transformation to make the result
+/// private key and use the `sc_reduce32` transformation to make the result
 /// usable as an ed25519 private key.
 ///
 /// [`keccak256`]: https://docs.rs/tiny-keccak/1.4.0/tiny_keccak/fn.keccak256.html
-/// [`sc_reduce32`]: ./fn.sc_reduce32.html
 pub fn from_seed(coin: Coin, seed: [u8; 32]) -> Result<Wallet> {
     let mut ctx = BigNumContext::new()?;
 
