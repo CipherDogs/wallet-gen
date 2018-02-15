@@ -21,7 +21,7 @@ use {bitcoin, cryptonote, ethereum};
 use std::collections::HashMap;
 
 /// The actual wallet structure.
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub struct Wallet {
     /// Which cryptocurrency this wallet is for
