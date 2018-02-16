@@ -22,5 +22,6 @@ digest = "0.7"
 either = "1"
 lazy_static = "1"
 openssl = "0.10"
+safemem = "0.2"
 serde = { version = "1", optional = true, features = ["derive"] }
 tiny-keccak = "1"

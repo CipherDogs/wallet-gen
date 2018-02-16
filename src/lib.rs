@@ -32,6 +32,7 @@ extern crate either;
 #[macro_use]
 extern crate lazy_static;
 extern crate openssl;
+extern crate safemem;
 extern crate tiny_keccak;
 
 #[cfg(feature = "serde")]

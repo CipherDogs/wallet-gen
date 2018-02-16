@@ -23,6 +23,7 @@ use openssl::ec::{EcGroup, EcKey, PointConversionForm};
 use openssl::hash::{hash, MessageDigest};
 use openssl::nid::Nid;
 use openssl::sha::sha256;
+use safemem::prepend;
 
 /// Generate a new wallet based on the Bitcoin style of producing [`Wallet`]s.
 /// For Bitcoin and Bitcoin variants.
@@ -61,7 +62,7 @@ pub fn new_wallet(coin: Coin) -> Result<Wallet> {
 /// This function modifies the buffer, prepending the
 /// "application/version" byte.
 pub fn base58_check(bytes: &mut Vec<u8>, prefix: &[u8]) -> String {
-    bytes.splice(..0, prefix.iter().cloned());
+    prepend(prefix, bytes);
     let hash = sha256(bytes);
     let checksum = &sha256(&hash[..])[..4];
     bytes.extend(checksum.iter().cloned());

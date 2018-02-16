@@ -16,7 +16,7 @@
 use super::prelude::*;
 use arrayvec::ArrayVec;
 use openssl::bn::{BigNum, BigNumContextRef, BigNumRef};
-use std::iter;
+use safemem::prepend;
 
 lazy_static! {
     /* ed25519 constants: */
@@ -242,7 +242,8 @@ pub fn bn_to_vec32(number: &BigNumRef) -> Vec<u8> {
     // Adds leading zeros
     let mut result = number.to_vec();
     let missing = 32 - result.len();
-    result.splice(..0, iter::repeat(0).take(missing));
+    let zeroes = &b"00000000000000000000000000000000"[..missing];
+    prepend(zeroes, &mut result);
     assert_eq!(result.len(), 32);
 
     // Fix byte ordering
