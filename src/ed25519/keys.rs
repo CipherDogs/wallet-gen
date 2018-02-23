@@ -38,20 +38,28 @@ impl PrivateKey {
         Ok(PrivateKey(bytes))
     }
 
+    /// Converts this private key into an array of its bytes
+    #[inline]
+    pub fn into_bytes(self) -> [u8; 32] { self.0 }
+
     /// Gets a copy of this private key's bytes
+    #[inline]
     pub fn to_bytes(&self) -> [u8; 32] { self.0 }
 
     /// Gets a reference to the internally stored private key bytes
+    #[inline]
     pub fn as_bytes(&self) -> &[u8; 32] { &self.0 }
 }
 
 impl Deref for PrivateKey {
     type Target = [u8; 32];
 
+    #[inline]
     fn deref(&self) -> &Self::Target { &self.0 }
 }
 
 impl AsRef<[u8]> for PrivateKey {
+    #[inline]
     fn as_ref(&self) -> &[u8] { &self.0[..] }
 }
 
@@ -68,20 +76,28 @@ impl PublicKey {
         Ok(PublicKey(bytes))
     }
 
+    /// Converts this public key into an array of its bytes
+    #[inline]
+    pub fn into_bytes(self) -> [u8; 32] { self.0 }
+
     /// Gets a copy of this public key's bytes
+    #[inline]
     pub fn to_bytes(&self) -> [u8; 32] { self.0 }
 
     /// Gets a reference to the internally stored public key bytes
+    #[inline]
     pub fn as_bytes(&self) -> &[u8; 32] { &self.0 }
 }
 
 impl Deref for PublicKey {
     type Target = [u8; 32];
 
+    #[inline]
     fn deref(&self) -> &Self::Target { &self.0 }
 }
 
 impl AsRef<[u8]> for PublicKey {
+    #[inline]
     fn as_ref(&self) -> &[u8] { &self.0[..] }
 }
 
