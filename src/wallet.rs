@@ -81,7 +81,7 @@ fn gen_all_wallets() {
         println!("Public key: {}", &wallet.public_key);
         println!("Private key: {}", &wallet.private_key);
         if let Some(ref other) = wallet.other {
-            println!("Other: {:?}", other);
+            println!("Other: {:#?}", other);
         }
         println!();
     }

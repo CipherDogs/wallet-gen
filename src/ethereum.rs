@@ -48,10 +48,10 @@ pub fn new_wallet(coin: Coin) -> Result<Wallet> {
 
 #[test]
 fn gen_eth_wallet() {
-    println!("{:?}", &new_wallet(Coin::Ethereum).unwrap());
+    println!("{:#?}", &new_wallet(Coin::Ethereum).unwrap());
 }
 
 #[test]
 fn gen_etc_wallet() {
-    println!("{:?}", &new_wallet(Coin::EthereumClassic).unwrap());
+    println!("{:#?}", &new_wallet(Coin::EthereumClassic).unwrap());
 }
