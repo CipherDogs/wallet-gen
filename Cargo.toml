@@ -1,6 +1,6 @@
 [package]
 name = "wallet-gen"
-version = "0.3.3"
+version = "0.4.0"
 
 description = "Rust library to mass-generate wallets for many different cryptocurrencies"
 repository = "https://gitlab.com/standard-mining/wallet-gen"
