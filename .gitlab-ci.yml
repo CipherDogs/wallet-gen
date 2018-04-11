@@ -1,0 +1,28 @@
+image: "rust:latest"
+
+stages:
+  - prepare
+  - build
+
+cache:
+  key: "$CI_JOB_NAME"
+  paths:
+    - target/
+
+before_script:
+  - apt-get update -yqq
+  - apt-get install -yqq libssl1.0-dev
+variables:
+  DEBIAN_FRONTEND: noninteractive
+
+build:
+  stage: build
+  script:
+    - rustc --version && cargo --version
+    - cargo build --color=always --verbose --release
+  cache:
+    paths:
+      - target/
+  artifacts:
+    paths:
+      - target/release/libwallet_gen.rlib
